@@ -15,10 +15,10 @@ if os.path.isfile(dotenv_file):
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '+r$uq#9sa%t2sm04c9d82$&d$z&e(@*lk*d&ieru^k4fc3=17)'
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DEBUG")
 
 ALLOWED_HOSTS = []
 
@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -111,6 +112,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+AWS_ACCESS_KEY_ID = os.getenv("S3_KEY")
+AWS_SECRET_ACCESS_KEY = os.getenv("S3_SECRET")
+
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_URL = '/static/'
 STATIC_ROOT = (
@@ -120,7 +124,10 @@ STATIC_ROOT = (
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL ='/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_STORAGE_BUCKET_BANE = 'larevistasomos-media-upload'
+AWS_S3_REGION_NAME = 'us-east-1'
+
 
 django_heroku.settings(locals())
 
