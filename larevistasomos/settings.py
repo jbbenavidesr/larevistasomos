@@ -158,7 +158,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 AWS_ACCESS_KEY_ID = os.getenv("S3_KEY", "")
@@ -172,7 +172,7 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
 STATIC_URL = '/static/'
 STATIC_ROOT = (
-    os.path.join(PROJECT_ROOT, 'staticfiles')
+    os.path.join(BASE_DIR, 'staticfiles')
 )
 
 MEDIA_URL = 'https://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
