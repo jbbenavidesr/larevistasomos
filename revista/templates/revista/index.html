@@ -11,7 +11,7 @@
             <p class="article-body">
                 {{ post.description | markdown | safe }}
             </p>
-            <a href="#" class="article-read-more">Leer más...</a>
+            <a href="{% url 'revista:article_detail' post.slug %}" class="article-read-more">Leer más...</a>
         </div>
         <div class="article-recent-secondary">
             {% if post.img1 %}
