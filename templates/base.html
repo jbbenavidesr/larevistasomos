@@ -1,0 +1,96 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-163601809-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-163601809-1');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+    {% block title %} Revista SOMOS {% endblock title %}
+    </title>
+    <meta name="author" content="J.B. Benavides Rubio">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,700;1,400&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/flickity.css' %}" media="screen">
+    <script src="https://kit.fontawesome.com/f15a5874bc.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="container-flex header-logo">
+                    <div class="logo">
+                        <a href="{% url 'revista:home' %}"><img src="{% static 'images/logo.jpg' %}" alt="logo" class="logo"></a>
+                    </div>
+    
+                    <div class="time-date">
+                        <p>Bogotá, Colombia</p>
+                        <p>Año 2020</p>
+                    </div>
+            </div>
+            
+            <nav class="nav-header">
+                <ul>
+                    <li><a href="/opinion/">Opinión</a></li>
+                    <li><a href="/cuentos/">Cuentos</a></li>
+                    <li><a href="/poemas/">Poemas</a></li>
+                    <li><a href="/vida-moderna/">Vida moderna</a></li>
+                    <li><a href="/contacto.html">Contáctenos</a></li>
+                </ul>
+            </nav>
+        </div>
+        
+    </header>
+
+    {% block content %}
+    {% endblock  %}
+
+    <footer>
+        <div class="container container-flex container-footer">
+            <div class="invite">
+                <h3>¿Tienes algo por contar?</h3>
+                <p>Envíanos tu poema, cuento, foto, investigación y/o artículo 
+                    a nuestro correo.
+                    <a href="mailto:revistasomos@glm.edu.co">revistasomos@glm.edu.co</a>
+                </p>
+            </div>
+
+            <nav class="nav-footer">
+                <h3>Navegación</h3>
+                <ul>
+                    <li><a href="/">Inicio</a></li>
+                    <li><a href="/opinion/">Opinión</a></li>
+                    <li><a href="/cuentos/">Cuentos</a></li>
+                    <li><a href="/poemas/">Poemas</a></li>
+                    <li><a href="/vida-moderna/">Vida moderna</a></li>
+                    <li><a href="/edicion-anterior/">Edición anterior</a></li>
+                    <li><a href="/quienes-somos.html">¿Quiénes <span>somos</span>?</a></li>
+                    <li><a href="/contacto.html">Contáctenos</a></li>
+                </ul>
+            </nav>
+
+            <div class="social-media">
+                <h3 class="social-title">!Síguenos!</h3>
+                <a href="http://www.instagram.com/larevista.somos" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-instagram">
+                        larevista.somos</i></a>
+            </div>
+        </div>
+
+        <small class="copyright">&copy; Copyright 2020, Revista SOMOS.</small>
+    </footer>
+
+    {% block scripts %}
+    {% endblock  %}
+
+</body>
+</html>
