@@ -3,7 +3,7 @@ from django.db import models
 class Author(models.Model):
     name = models.CharField("Nombre", max_length=200, unique=True)
     school = models.CharField("Colegio", max_length=200)
-    ig_link = models.URLField("Instagram Link", blank= True)
+    # ig_link = models.URLField("Instagram Link", blank= True)
     ig_user = models.CharField("Instagram User", max_length=50, blank= True)
     photo = models.ImageField("Foto", upload_to='autores')
 
@@ -74,7 +74,7 @@ class Comment(models.Model):
         verbose_name= 'Articulo'
     )
     name = models.CharField('Nombre', max_length = 80)
-    body = models.TextField()
+    body = models.TextField('Contenido')
     created_on = models.DateTimeField('Creación', auto_now_add = True)
     active = models.BooleanField(default = True)
 
