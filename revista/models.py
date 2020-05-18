@@ -54,8 +54,8 @@ class Article(models.Model):
     )
     status = models.IntegerField("Estado", choices=STATUS, default = 0)
     claps = models.IntegerField("Aplausos", default = 0)
-    imagen1 = models.ImageField("Imagen principal", upload_to='articulos')
-    imagen2 = models.ImageField("Segunda imagen", upload_to='articulos', blank=True)
+    img1 = models.ImageField("Imagen principal", upload_to='articulos', blank=True)
+    img2 = models.ImageField("Segunda imagen", upload_to='articulos', blank=True)
 
     class Meta:
         ordering = ['-update']
