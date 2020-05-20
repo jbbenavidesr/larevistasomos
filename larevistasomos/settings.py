@@ -20,7 +20,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['larevistasomos.herokuapp.com']
 
 # Deployment 
 
@@ -176,7 +176,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, 'staticfiles'),
+    os.path.join(BASE_DIR, 'staticfiles'),
 )
 
 MEDIA_URL = 'https://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
