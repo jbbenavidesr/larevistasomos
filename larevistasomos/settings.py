@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     #'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
-    'storages',
 ]
 
 MIDDLEWARE = [
@@ -160,33 +159,29 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'staticfiles'),
-)
+AWS_ACCESS_KEY_ID = os.environ.get('S3_KEY')
+AWS_SECRET_ACCESS_KEY = os.environ.get('S3_SECRET')
 
-AWS_ACCESS_KEY_ID = os.getenv("S3_KEY", "")
-AWS_SECRET_ACCESS_KEY = os.getenv("S3_SECRET","")
 AWS_STORAGE_BUCKET_NAME = 'larevistasomos-media-upload'
 AWS_S3_REGION_NAME = 'us-east-1'
 AWS_QUERYSTRING_AUTH = False
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_LOCATION = 'static'
 
+AWS_IS_GZIPPED = True
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
 
-AWS_LOCATION = 'static'
-# PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-#COMPRESS_ENABLED = False
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
-#STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+STATIC_ROOT = 'static'
+MEDIA_ROOT = 'media'
+STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, STATIC_ROOT) 
+MEDIA_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, MEDIA_ROOT) 
 
 
-
-DEFAULT_FILE_STORAGE = 'larevistasomos.storage_backends.MediaStorage'
-MEDIA_URL = 'https://%s/media/' % AWS_S3_CUSTOM_DOMAIN
 
 
 
