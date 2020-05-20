@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     #'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -178,7 +179,7 @@ AWS_S3_OBJECT_PARAMETERS = {
 STATIC_URL = 'https://%s/' % AWS_S3_CUSTOM_DOMAIN
 MEDIA_URL = STATIC_URL + 'media/'
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'staticfiles'),
+    os.path.join(BASE_DIR, 'static'),
 )
 STATIC_ROOT = 'staticfiles'
 
