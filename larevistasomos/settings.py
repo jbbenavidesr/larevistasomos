@@ -23,11 +23,11 @@ DEBUG = False
 ALLOWED_HOSTS = ['larevistasomos.herokuapp.com']
 
 # Deployment 
-"""
+
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 SECURE_SSL_REDIRECT = True
-"""
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -173,7 +173,7 @@ AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 COMPRESS_ENABLED = False
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 
 # STATICFILES_DIRS = (
 #     os.path.join(BASE_DIR, 'staticfiles'),
