@@ -13,8 +13,8 @@ class index(generic.ListView):
     template_name = 'revista/index.html'
 
 def article_detail(request, slug):
-    template_name = 'revista/article.html'
     article = get_object_or_404(Article, slug=slug)
+    template_name = 'revista/' + article.template_name
     comments = article.comments.filter(active = True)
     new_comment = None
     # Comment posted

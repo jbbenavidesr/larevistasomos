@@ -5,21 +5,23 @@
 {% block content %}
 
 {% for post in object_list %}
-    <article class="article-recent">
-        <div class="article-recent-main">
-            <h2 class="article-title">{{ post.title }}</h2>
-            <p class="article-body">
-                {{ post.description | markdown | safe }}
-            </p>
-            <a href="{% url 'revista:article_detail' post.slug %}" class="article-read-more">Leer más...</a>
-        </div>
-        <div class="article-recent-secondary">
-            {% if post.img1 %}
-            <img src="{{ post.img1.url }}" alt="" class="article-image">
-            {% endif %}
-            <p class="article-author">{{ post.author }}</p>
-            <p class="article-author">{{ post.author.school }}</p>
-        </div>
-    </article>
+    <div>
+        <article class="article-recent">
+            <div class="article-recent-main">
+                <h2 class="article-title">{{ post.title }}</h2>
+                <p class="article-body">
+                    {{ post.description | markdown | safe }}
+                </p>
+                <a href="{% url 'revista:article_detail' post.slug %}" class="article-read-more">Leer más...</a>
+            </div>
+            <div class="article-recent-secondary">
+                {% if post.images %}
+                <img src="{{ post.get_first_image.image.url }}" alt="" class="article-image">
+                {% endif %}
+                <p class="article-author">{{ post.author }}</p>
+                <p class="article-author">{{ post.author.school }}</p>
+            </div>
+        </article>
+    </div>
 {% endfor %}
 {% endblock  %}

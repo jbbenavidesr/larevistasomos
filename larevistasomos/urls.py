@@ -26,3 +26,7 @@ urlpatterns = [
 
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+admin.site.site_header = "Administración Revista SOMOS"
+admin.site.site_title = "Revista Somos Admin"
+admin.site.index_title = "Bienvenido al portal Administrativo de la revista SOMOS"

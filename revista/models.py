@@ -1,11 +1,41 @@
 from django.db import models
+from django.template.defaultfilters import slugify
+from django.conf import settings
+
+import markdown
+
+
+STATUS = (
+    (0, "Draft"),
+    (1, "Publish")
+)
+
+def markdown_to_html( markdownText, images ):    
+    image_ref = ""
+
+    for image in images:
+        image_url = image.image.url
+        image_ref = "%s\n[%s]: %s" % ( image_ref, image, image_url )
+
+    md = "%s\n%s" % ( markdownText, image_ref )
+    html = markdown.markdown( md )
+
+    return html
+
+def image_filename(name, filename):
+    fname, dot, extension = filename.rpartition('.')
+    slug = slugify(name)
+    return '%s.%s' % (slug, extension) 
 
 class Author(models.Model):
     name = models.CharField("Nombre", max_length=200, unique=True)
     school = models.CharField("Colegio", max_length=200)
-    # ig_link = models.URLField("Instagram Link", blank= True)
-    ig_user = models.CharField("Instagram User", max_length=50, blank= True)
-    photo = models.ImageField("Foto", upload_to='autores')
+    ig_user = models.CharField("Instagram User (no @)", max_length=50, blank= True)
+    
+    def path(self, filename):
+        return 'autores/' + image_filename(self.name , filename)
+
+    photo = models.ImageField("Foto", upload_to= path )
 
     class Meta:
         verbose_name = 'Autor'
@@ -13,11 +43,15 @@ class Author(models.Model):
 
     def __str__(self):
         return self.name
-    
 
+    def ig_url (self):
+        return 'https://www.instagram.com/%s/' % self.ig_user
+    
+    
 
 class Category(models.Model):
     name = models.CharField("Nombre ", max_length=50, unique=True)
+    slug = models.SlugField(max_length=200, unique=True)
 
     class Meta:
         verbose_name = 'Categoría'
@@ -25,12 +59,6 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
-
-
-STATUS = (
-    (0, "Draft"),
-    (1, "Publish")
-)
 
 
 class Article(models.Model):
@@ -43,19 +71,19 @@ class Article(models.Model):
         verbose_name = "Autor"
     )
     body = models.TextField("Contenido")
+    bib = models.TextField("Bibliografía", blank=True)
     description = models.TextField("Descripción corta")
     pub_date = models.DateField("Fecha de publicación")
     update = models.DateTimeField("Última modificación", auto_now=True)
     category = models.ForeignKey(
         Category,
         on_delete= models.CASCADE,
-        related_name = 'articulos',
+        related_name = 'articles',
         verbose_name = "Categoría"
     )
-    status = models.IntegerField("Estado", choices=STATUS, default = 0)
+    status = models.IntegerField("Estado", choices=STATUS, default = 1)
     claps = models.IntegerField("Aplausos", default = 0)
-    img1 = models.ImageField("Imagen principal", upload_to='articulos', blank=True)
-    img2 = models.ImageField("Segunda imagen", upload_to='articulos', blank=True)
+    template_name = models.CharField('Layout del articulo', max_length=50 ,default='article.html')
 
     class Meta:
         ordering = ['-update']
@@ -64,6 +92,31 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
+
+    def body_html( self ):
+        return markdown_to_html( self.body, self.images.all() )
+    
+    def get_first_image(self):
+        return self.images.all()[0]
+
+
+class Image( models.Model ):
+    name = models.CharField( max_length=100 )
+    article = models.ForeignKey(
+        Article, 
+        on_delete=models.CASCADE, 
+        related_name = 'images',
+        verbose_name= 'Articulo'
+    )
+
+    def path(self, filename):
+        return self.article.category.name + '/' + image_filename(self.article.title+'-' + self.name, filename) 
+
+    image = models.ImageField(upload_to= path)
+    source = models.URLField('Fuente', blank = True)
+
+    def __str__( self ):
+        return self.name
 
 
 class Comment(models.Model):
