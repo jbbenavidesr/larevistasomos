@@ -18,16 +18,16 @@ if os.path.isfile(dotenv_file):
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
 # Deployment 
-"""
+
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 SECURE_SSL_REDIRECT = True
-"""
+
 # Application definition
 
 INSTALLED_APPS = [
