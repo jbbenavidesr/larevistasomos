@@ -110,7 +110,7 @@ class Image( models.Model ):
     )
 
     def path(self, filename):
-        return self.article.category.name + '/' + image_filename(self.article.title+'-' + self.name, filename) 
+        return self.article.category.slug + '/' + image_filename(self.article.title+'-' + self.name, filename) 
 
     image = models.ImageField(upload_to= path)
     source = models.URLField('Fuente', blank = True)
