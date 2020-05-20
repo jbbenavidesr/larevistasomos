@@ -15,7 +15,7 @@
                 <a href="{% url 'revista:article_detail' post.slug %}" class="article-read-more">Leer más...</a>
             </div>
             <div class="article-recent-secondary">
-                {% if post.images %}
+                {% if post.images.all %}
                 <img src="{{ post.get_first_image.image.url }}" alt="" class="article-image">
                 {% endif %}
                 <p class="article-author">{{ post.author }}</p>
