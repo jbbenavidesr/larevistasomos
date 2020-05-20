@@ -171,7 +171,7 @@ AWS_QUERYSTRING_AUTH = False
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-COMPRESS_ENABLED = False
+#COMPRESS_ENABLED = False
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 
