@@ -37,14 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    #'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'storages',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    #'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -160,8 +158,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 AWS_ACCESS_KEY_ID = os.environ.get('S3_KEY', '')
 AWS_SECRET_ACCESS_KEY = os.environ.get('S3_SECRET','')
@@ -176,17 +175,11 @@ AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
 
-STATIC_URL = 'https://%s/' % AWS_S3_CUSTOM_DOMAIN
-MEDIA_URL = STATIC_URL + 'media/'
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
-# STATIC_ROOT = 'staticfiles'
+AWS_LOCATION = 'static'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-)
+DEFAULT_FILE_STORAGE = 'mysite.storage_backends.MediaStorage'
 
 
 django_heroku.settings(locals(), staticfiles=False)
