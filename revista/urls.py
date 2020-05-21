@@ -6,5 +6,6 @@ app_name = "revista"
 
 urlpatterns = [
     path('', views.index.as_view(), name='home'),
-    path('<slug:slug>/', views.article_detail, name = 'article_detail'),
+    path('<slug:category>/', views.category_list.as_view(), name='category'),
+    path('<slug:category>/<slug:slug>/', views.article_detail, name = 'article_detail'),
 ]

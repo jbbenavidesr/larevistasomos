@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
 
-from .models import Article, Comment
+from .models import Article, Comment, Category
 from .forms import CommentForm
 
 
@@ -12,7 +12,16 @@ class index(generic.ListView):
     queryset = Article.objects.all()
     template_name = 'revista/index.html'
 
-def article_detail(request, slug):
+class category_list(generic.ListView):
+    template_name = 'revista/index.html'
+
+    def get_queryset(self):
+        self.category = get_object_or_404(Category, slug=self.kwargs['category'])
+        return Article.objects.filter(category=self.category)
+        
+    queryset = get_queryset
+
+def article_detail(request, category, slug):
     article = get_object_or_404(Article, slug=slug)
     template_name = 'revista/' + article.template_name
     comments = article.comments.filter(active = True)

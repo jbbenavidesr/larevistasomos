@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="{% static 'css/flickity.css' %}" media="screen">
     <script src="https://kit.fontawesome.com/f15a5874bc.js" crossorigin="anonymous"></script>
     <link rel="canonical" href="https://www.larevistasomos.com">
+    {% block head_tags %}{% endblock  %}
 </head>
 <body>
     <header>
@@ -39,6 +40,8 @@
                     </div>
             </div>
             
+            {% block navigation %}
+            
             <nav class="nav-header">
                 <ul>
                     <li><a href="/opinion/">Opinión</a></li>
@@ -48,13 +51,18 @@
                     <li><a href="/contacto.html">Contáctenos</a></li>
                 </ul>
             </nav>
+            {% endblock %}
         </div>
         
     </header>
 
     <div class="container container-flex"> 
     {% block content %}
-    {% endblock  %}
+    {% endblock %}
+
+    {% block sidebar %}
+    {% endblock %}
+
     </div>
 
     <footer>
@@ -67,7 +75,7 @@
                     <a href="#">Email</a>
                 </p>
             </div>
-
+            {% block footer_nav %}
             <nav class="nav-footer">
                 <h3>Navegación</h3>
                 <ul>
@@ -81,7 +89,7 @@
                     <li><a href="/contacto.html">Contáctenos</a></li>
                 </ul>
             </nav>
-
+            {% endblock  %}
             <div class="social-media">
                 <h3 class="social-title">!Síguenos!</h3>
                 <a href="http://www.instagram.com/larevista.somos" target="_blank" rel="noopener noreferrer">

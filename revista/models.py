@@ -29,13 +29,13 @@ def image_filename(name, filename):
 
 class Author(models.Model):
     name = models.CharField("Nombre", max_length=200, unique=True)
-    school = models.CharField("Colegio", max_length=200)
+    school = models.CharField("Colegio", max_length=200, blank=True)
     ig_user = models.CharField("Instagram User (no @)", max_length=50, blank= True)
     
     def path(self, filename):
         return 'autores/' + image_filename(self.name , filename)
 
-    photo = models.ImageField("Foto", upload_to= path )
+    photo = models.ImageField("Foto", upload_to= path)
 
     class Meta:
         verbose_name = 'Autor'
