@@ -8,11 +8,11 @@ from .forms import CommentForm
 # def index(request):
 #     return render(request, 'revista/index.html')
 
-class index(generic.ListView):
+class Index(generic.ListView):
     queryset = Article.objects.all()
     template_name = 'revista/index.html'
 
-class category_list(generic.ListView):
+class CategoryList(generic.ListView):
     template_name = 'revista/index.html'
 
     def get_queryset(self):

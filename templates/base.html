@@ -60,10 +60,16 @@
     {% block content %}
     {% endblock %}
 
-    {% block sidebar %}
-    {% endblock %}
-
+    
+        <aside class= "sidebar">
+            {% block sidebar %}
+                {% include 'sidebar.html' %}
+            {% endblock %}
+        </aside>
     </div>
+
+    {% block extra_content %}
+    {% endblock  %}
 
     <footer>
         <div class="container container-flex container-footer">
@@ -91,7 +97,7 @@
             </nav>
             {% endblock  %}
             <div class="social-media">
-                <h3 class="social-title">!Síguenos!</h3>
+                <h3 class="social-title">¡Síguenos!</h3>
                 <a href="http://www.instagram.com/larevista.somos" target="_blank" rel="noopener noreferrer">
                     <i class="fab fa-instagram">
                         larevista.somos</i></a>

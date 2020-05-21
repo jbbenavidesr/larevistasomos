@@ -1,0 +1,33 @@
+{% load markdown_extras %}
+
+<div class="">
+    <div class="">
+        <!-- comments -->
+        <h2>{{ comments.count }} comments</h2>
+
+        {% for comment in comments %}
+        <div class="comments">
+            <div class="">
+                <h3>{{ comment.name }}</h3>
+                <span class="">
+                    {{ comment.created_on }}
+                </span>
+                <div>
+                    {{ comment.body | markdown | safe }}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<div class="">
+    <div class="">
+        <h3>Leave a comment</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ comment_form.as_p }}
+            <button type="submit" class="">Submit</button>
+        </form>
+        
+    </div>
+</div> 

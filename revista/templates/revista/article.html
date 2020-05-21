@@ -10,61 +10,26 @@
 
         <main class="content">
             <h2 class="content-title">{{ article.title }}</h2>
-            {% comment %} {% if article.img1 %}
-            <div class="img-container">
-                <img src="{{ article.img1.url }}" alt="" class="img-content-main image-full">
-            </div>
-            {% endif %}
-             {% endcomment %}
-
+            
             <div class ="article-container">
                 {{ article.body_html | safe }}
             </div>
 
-            {% comment %} {% if article.img2 %}
-            <div class="img-container">
-                <img src="{{ article.img2.url }}" alt="" class="img-content-main image-full">
-            </div>
-            {% endif %} {% endcomment %}
-
         </main>
+{% endblock %}
 
-        <aside role="author" class="author">
-            <div class="container container-author">
-                <img src="{{ article.author.photo.url }}" alt="" class="author-image">
-                <p class="author-name">{{ article.author }}</p>
-                <p class="author-school">{{ article.author.school }}</p>
-            </div>
-        </aside>
-
-        {% comment %} <div class="col-md-8 card mb-4 mt-3">
-            <div class="card-body">
-                <!-- comments -->
-                <h2>{{ comments.count }} comments</h2>
-
-                {% for comment in comments %}
-                <div class="comments" style="padding: 10px;">
-                    <p class="font-weight-bold">
-                        {{ comment.name }}
-                        <span class="text-muted fontweight-normal">
-                            {{ comment.created_on }}
-                        </span>
-                        {{ comment.body | markdown | safe }}
-                    </p>
-                </div>
-                {% endfor %}
-            </div>
+{% block sidebar %}
+    <aside role="author" class="author">
+        <div class="container container-author">
+            <img src="{{ article.author.photo.url }}" alt="" class="author-image">
+            <p class="author-name">{{ article.author }}</p>
+            <p class="author-school">{{ article.author.school }}</p>
         </div>
-        <div class="col-md-8 card mb-4 mt-3">
-            <div class="card-body">
-                <h3>Leave a comment</h3>
-                <form method="post" style="margin-top: 1.3em;">
-                    {% csrf_token %}
-                    {{ comment_form.as_p }}
-                    <button type="submit" class="">Submit</button>
-                </form>
-                
-            </div>
-        </div> {% endcomment %}
+    </aside>
+{% endblock  %}
 
-{% endblock content %}
+{% block extra_content %}
+    {% include 'revista/comments.html' %}
+{% endblock  %}
+        
+
