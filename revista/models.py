@@ -72,7 +72,7 @@ class Article(models.Model):
     )
     body = models.TextField("Contenido")
     bib = models.TextField("Bibliografía", blank=True)
-    description = models.TextField("Descripción corta")
+    description = models.TextField("Descripción corta", blank=True)
     pub_date = models.DateField("Fecha de publicación")
     update = models.DateTimeField("Última modificación", auto_now=True)
     category = models.ForeignKey(
@@ -86,7 +86,7 @@ class Article(models.Model):
     template_name = models.CharField('Layout del articulo', max_length=50 ,default='article.html')
 
     class Meta:
-        ordering = ['-update']
+        ordering = ['-pub_date']
         verbose_name = 'Artículo'
         verbose_name_plural = 'Artículos'
 

@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
+from django.http import HttpResponse
 
 from .models import Article, Comment, Category
 from .forms import CommentForm
@@ -44,3 +45,6 @@ def article_detail(request, category, slug):
                                             'comments': comments,
                                             'new_comment': new_comment,
                                             'comment_form': comment_form})
+
+def Contact(request):
+    return HttpResponse('Aca va el contacto')

@@ -64,6 +64,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'revista.context_processors.navbar',
+                'revista.context_processors.get_current_year'
             ],
         },
     },
@@ -169,6 +171,7 @@ AWS_STORAGE_BUCKET_NAME = 'larevistasomos-media-upload'
 AWS_S3_REGION_NAME = 'us-east-1'
 AWS_QUERYSTRING_AUTH = False
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_DEFAULT_ACL = None
 
 AWS_IS_GZIPPED = True
 AWS_S3_OBJECT_PARAMETERS = {

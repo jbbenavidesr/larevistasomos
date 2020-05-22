@@ -24,7 +24,7 @@ class ArticleAdmin(admin.ModelAdmin):
         }),
     )   
 
-    list_display = ('title', 'slug', 'author', 'status', 'pub_date')
+    list_display = ('title', 'author', 'category', 'pub_date', 'status')
     list_filter = ('status','pub_date',)
     search_fields = ['title', 'body', 'author']
     prepopulated_fields = {'slug': ('title',)}
