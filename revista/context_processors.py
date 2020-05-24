@@ -13,7 +13,7 @@ def navbar(request):
         'categories': Category.objects.all(),
         'contact': {
             'name': 'Contáctenos', 
-            'link': 'revista:contact'
+            'link': 'contact:contact'
         },
         'about-us': {
             'name': '¿Quienes SOMOS?', 

@@ -31,6 +31,7 @@ SECURE_SSL_REDIRECT = True
 # Application definition
 
 INSTALLED_APPS = [
+    'contact.apps.ContactConfig',
     'revista.apps.RevistaConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -80,6 +81,9 @@ WSGI_APPLICATION = 'larevistasomos.wsgi.application'
 DATABASES = {}
 DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 
+# Email 
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators

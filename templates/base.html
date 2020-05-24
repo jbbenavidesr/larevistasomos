@@ -60,11 +60,9 @@
     {% endblock %}
 
     
-        <aside class= "sidebar">
-            {% block sidebar %}
-                {% include 'sidebar.html' %}
-            {% endblock %}
-        </aside>
+    {% block sidebar %}
+        {% include 'sidebar.html' %}
+    {% endblock %}
     </div>
 
     {% block extra_content %}
