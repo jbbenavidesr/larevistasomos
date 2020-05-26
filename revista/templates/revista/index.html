@@ -1,31 +1,65 @@
 {% extends 'base.html' %}
 
+{% load static %}
 {% load markdown_extras %}
 
 {% block content %}
 <main>
-{% for post in object_list %}
-        <article class="article-recent">
-            <div class="article-recent-main">
-                <h2 class="article-title">{{ post.title }}</h2>
-                <p class="article-author">{{ post.author.name }}</p>
-                <p class="article-author">{{ post.author.school }}</p>
-                <p class="article-body">
-                    {{ post.description | markdown | safe }}
-                </p>
-                <a href="{% url 'revista:article_detail' post.category.slug post.slug %}" class="article-read-more">Leer más...</a>
-            </div>
-            <div class="article-recent-secondary">
-                {% if post.images.all %}
-                <img src="{{ post.get_first_image.image.url }}" alt="" class="article-image">
-                {% endif %}
-            </div>
-        </article>
-{% endfor %}
+    <article class="article-featured">
+        <h2 class="article-title">{{ object_list.0.title }}</h2>
+        <img src="{{ object_list.0.get_first_image.image.url }}" alt="" class="article-image image-full">
+        <p class="article-author">{{ object_list.0.author.name }}</p>
+        <p class="article-author">{{ object_list.0.author.school }}</p>
+        <p class="article-body">
+            {{ object_list.0.description | markdown | safe }}
+        </p>
+        <a href="{% url 'revista:article_detail' object_list.0.category.slug object_list.0.slug %}" class="article-read-more">Leer más...</a>
+    </article>
+
+    {% for post in object_list|slice:"1:" %}
+    <article class="article-recent">
+        <div class="article-recent-main">
+            <h2 class="article-title">{{ post.title }}</h2>
+            <p class="article-author">{{ post.author.name }}</p>
+            <p class="article-author">{{ post.author.school }}</p>
+            <p class="article-body">
+                {{ post.description | markdown | safe }}
+            </p>
+            <a href="{% url 'revista:article_detail' post.category.slug post.slug %}" class="article-read-more">Leer más...</a>
+        </div>
+        <div class="article-recent-secondary">
+            {% if post.images.all %}
+            <img src="{{ post.get_first_image.image.url }}" alt="" class="article-image">
+            {% endif %}
+        </div>
+    </article>
+    {% endfor %}
 </main>
 {% endblock content %}
 
 {% block sidebar %}
-    {% include 'sidebar.html' %}
+<aside class= "sidebar">
+    <div class="sidebar-widget" id="about-us">
+        <a href="/quienes-somos.html" class="widget-link">
+            <h2 class="widget-title">¿Quiénes SOMOS?</h2>
+            <img src="{% static 'images/logo.jpg' %}" alt="" class="widget-image">
+            <p class="widget-body">
+                La voz de la juventud
+            </p>
+        </a>
+    </div>
+
+    <div class="sidebar-widget" id="anterior">
+        <h2 class="widget-title"><a href="/edicion-anterior/">Archivo</a></h2>
+        {% for post in archive_post %}
+        <div class="widget-recent-post">
+            <a href="{% url 'revista:article_detail' post.category.slug post.slug %}" class="widget-link">
+                <h3 class="widget-recent-post-title">{{ post.title }}</h3>
+                <img src="{{ post.get_first_image.image.url }}" alt="" class="widget-image">
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</aside>
 {% endblock sidebar %}
     

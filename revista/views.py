@@ -15,6 +15,7 @@ from .forms import CommentForm
 class Index(generic.ListView):
     template_name = 'revista/index.html'
 
+
     def get_queryset(self):
         """
         Return the articles in this edition (not including those set to be
@@ -26,6 +27,15 @@ class Index(generic.ListView):
             pub_date__gte = startdate,
             pub_date__lte = enddate   
         ).order_by('-pub_date')
+    
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet of all the books
+        context['archive_post'] = Article.objects.filter(
+            pub_date__lte = datetime.date(2020, 5, 1)
+        ).order_by('-pub_date')[:3]
+        return context
 
 class CategoryList(generic.ListView):
     template_name = 'revista/index.html'
