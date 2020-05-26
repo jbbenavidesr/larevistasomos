@@ -3,12 +3,13 @@
 {% load markdown_extras %}
 
 {% block content %}
-
+<main>
 {% for post in object_list %}
-    <div>
         <article class="article-recent">
             <div class="article-recent-main">
                 <h2 class="article-title">{{ post.title }}</h2>
+                <p class="article-author">{{ post.author.name }}</p>
+                <p class="article-author">{{ post.author.school }}</p>
                 <p class="article-body">
                     {{ post.description | markdown | safe }}
                 </p>
@@ -18,10 +19,13 @@
                 {% if post.images.all %}
                 <img src="{{ post.get_first_image.image.url }}" alt="" class="article-image">
                 {% endif %}
-                <p class="article-author">{{ post.author }}</p>
-                <p class="article-author">{{ post.author.school }}</p>
             </div>
         </article>
-    </div>
 {% endfor %}
-{% endblock  %}
+</main>
+{% endblock content %}
+
+{% block sidebar %}
+    {% include 'sidebar.html' %}
+{% endblock sidebar %}
+    

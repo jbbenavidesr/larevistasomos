@@ -35,7 +35,7 @@ class Author(models.Model):
     def path(self, filename):
         return 'autores/' + image_filename(self.name , filename)
 
-    photo = models.ImageField("Foto", upload_to= path)
+    photo = models.ImageField("Foto", upload_to= path, blank=True)
 
     class Meta:
         verbose_name = 'Autor'

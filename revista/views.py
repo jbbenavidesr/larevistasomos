@@ -1,6 +1,9 @@
+import datetime
+
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from django.http import HttpResponse
+from django.utils import timezone
 
 from .models import Article, Comment, Category
 from .forms import CommentForm
@@ -10,15 +13,29 @@ from .forms import CommentForm
 #     return render(request, 'revista/index.html')
 
 class Index(generic.ListView):
-    queryset = Article.objects.all()
     template_name = 'revista/index.html'
+
+    def get_queryset(self):
+        """
+        Return the articles in this edition (not including those set to be
+        published in the future ). 
+        """
+        startdate = datetime.date(2020, 5, 1)
+        enddate = timezone.now()
+        return Article.objects.filter(
+            pub_date__gte = startdate,
+            pub_date__lte = enddate   
+        ).order_by('-pub_date')
 
 class CategoryList(generic.ListView):
     template_name = 'revista/index.html'
 
     def get_queryset(self):
         self.category = get_object_or_404(Category, slug=self.kwargs['category'])
-        return Article.objects.filter(category=self.category)
+        return Article.objects.filter(
+            category=self.category,
+            pub_date__lte = timezone.now()  
+        )
         
     queryset = get_queryset
 
