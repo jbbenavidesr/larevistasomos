@@ -1,14 +1,30 @@
 {% load markdown_extras %}
 
-<div class="">
+<div class="container">
+    <div class="">
+        {% if new_comment %}
+        <div>
+            <p>Gracias por comentar.</p>
+        </div>
+        {% else %}
+        <h3>Deje su comentario</h3>
+        <p>Su email no será publicado.</p>
+        <form method="post">
+            {% csrf_token %}
+            {{ comment_form.as_p }}
+            <button type="submit" class="">Comenta!</button>
+        </form>
+        {% endif %}          
+    </div>
+ 
     <div class="">
         <!-- comments -->
-        <h2>{{ comments.count }} comments</h2>
+        <h3>{{ comments.count }} comentarios</h3>
 
         {% for comment in comments %}
         <div class="comments">
             <div class="">
-                <h3>{{ comment.name }}</h3>
+                <h4>{{ comment.name }}</h4>
                 <span class="">
                     {{ comment.created_on }}
                 </span>
@@ -20,14 +36,3 @@
         {% endfor %}
     </div>
 </div>
-<div class="">
-    <div class="">
-        <h3>Leave a comment</h3>
-        <form method="post">
-            {% csrf_token %}
-            {{ comment_form.as_p }}
-            <button type="submit" class="">Submit</button>
-        </form>
-        
-    </div>
-</div> 

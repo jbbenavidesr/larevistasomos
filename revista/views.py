@@ -45,6 +45,3 @@ def article_detail(request, category, slug):
                                             'comments': comments,
                                             'new_comment': new_comment,
                                             'comment_form': comment_form})
-
-def Contact(request):
-    return HttpResponse('Aca va el contacto')

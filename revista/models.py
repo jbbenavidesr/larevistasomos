@@ -128,6 +128,7 @@ class Comment(models.Model):
     )
     name = models.CharField('Nombre', max_length = 80)
     body = models.TextField('Contenido')
+    email = models.EmailField(max_length=254)
     created_on = models.DateTimeField('Creación', auto_now_add = True)
     active = models.BooleanField(default = True)
 
