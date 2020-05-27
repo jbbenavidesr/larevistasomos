@@ -90,8 +90,8 @@
                     <li><a href="{% url 'revista:category' category.slug %}">{{ category.name }}</a></li>
                     {% endfor %}
                     <li><a href="/edicion-anterior/">Edición anterior</a></li>
-                    <li><a href="/quienes-somos.html">¿Quiénes <span>somos</span>?</a></li>
-                    <li><a href="/contacto.html">Contáctenos</a></li>
+                    <li><a href="{% url 'revista:about_us' %}">¿Quiénes <span>somos</span>?</a></li>
+                    <li><a href="{% url contact.link %}"> {{ contact.name }}</a></li>
                 </ul>
             </nav>
             {% endblock  %}
