@@ -73,5 +73,5 @@ def article_detail(request, category, slug):
                                             'new_comment': new_comment,
                                             'comment_form': comment_form})
 
-def about_us(request):
-    return render(request, 'about_us.html')
+class AboutUs(generic.TemplateView):
+	template_name = 'about-us.html'

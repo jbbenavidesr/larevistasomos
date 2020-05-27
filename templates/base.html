@@ -76,10 +76,9 @@
         <div class="container container-flex container-footer">
             <div class="invite">
                 <h3>¿Tienes algo por contar?</h3>
-                <p>Envíanos tu poema, cuento, foto, investigación y/o artículo 
-                    a nuestro correo.
+                <p>Envíanos tu poema, cuento, foto, investigación y/o artículo.
                     {% comment %} TODO: Fix email link {% endcomment %}
-                    <a href="#">Email</a>
+                    <a href="{% url contact.link %}">{{ contact.name }}</a>
                 </p>
             </div>
             {% block footer_nav %}
