@@ -1,5 +1,7 @@
 {% load static %}
 
+{% load obfuscate_email %}
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -78,7 +80,8 @@
                 <h3>¿Tienes algo por contar?</h3>
                 <p>Envíanos tu poema, cuento, foto, investigación y/o artículo.
                     {% comment %} TODO: Fix email link {% endcomment %}
-                    <a href="{% url contact.link %}">{{ contact.name }}</a>
+                    {% comment %} <a href="{% url contact.link %}">{{ contact.name }}</a> {% endcomment %}
+                    {% obfuscate_email 'juanber@gmail.com' 'holi' %}
                 </p>
             </div>
             {% block footer_nav %}
