@@ -9,23 +9,24 @@ from .models import Article, Comment, Category
 from .forms import CommentForm
 
 
-# def index(request):
-#     return render(request, 'revista/index.html')
-
 class Index(generic.ListView):
     template_name = 'revista/index.html'
-
+    startdate = datetime.date(2020, 5, 1)
+    enddate = timezone.now()
 
     def get_queryset(self):
         """
         Return the articles in this edition (not including those set to be
         published in the future ). 
         """
-        startdate = datetime.date(2020, 5, 1)
-        enddate = timezone.now()
+        
         return Article.objects.filter(
-            pub_date__gte = startdate,
-            pub_date__lte = enddate   
+            pub_date__gte = self.startdate,
+            pub_date__lte = self.enddate   
+        ).exclude(
+            category__slug = 'cuentos'
+        ).exclude(
+            category__slug = 'poemas'
         ).order_by('-pub_date')
     
     def get_context_data(self, **kwargs):
@@ -35,6 +36,18 @@ class Index(generic.ListView):
         context['archive_post'] = Article.objects.filter(
             pub_date__lte = datetime.date(2020, 5, 1)
         ).order_by('-pub_date')[:3]
+
+        context['cuentos'] = Article.objects.filter(
+            category__slug = 'cuentos',
+            pub_date__gte = self.startdate,
+            pub_date__lte = self.enddate  
+        )
+
+        context['poemas'] = Article.objects.filter(
+            category__slug = 'poemas',
+            pub_date__gte = self.startdate,
+            pub_date__lte = self.enddate  
+        )
         return context
 
 class CategoryList(generic.ListView):
@@ -42,12 +55,14 @@ class CategoryList(generic.ListView):
 
     def get_queryset(self):
         self.category = get_object_or_404(Category, slug=self.kwargs['category'])
+        startdate = datetime.date(2020, 5, 1)
+        enddate = timezone.now()
         return Article.objects.filter(
             category=self.category,
-            pub_date__lte = timezone.now()  
+            pub_date__gte = startdate,
+            pub_date__lte = enddate  
         )
-        
-    queryset = get_queryset
+    
 
 def article_detail(request, category, slug):
     article = get_object_or_404(Article, slug=slug)

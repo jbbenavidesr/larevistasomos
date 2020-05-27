@@ -40,6 +40,36 @@
 
 {% block sidebar %}
 <aside class= "sidebar">
+
+    {% if cuentos %}
+    <div class="sidebar-widget side-section">
+        <h2 class="widget-title side-section-title"><a href="{% url 'revista:category' 'cuentos' %}">Cuentos</a></h2>
+        {% for cuento in cuentos %}
+        <div class="widget-recent-post">
+            <a href="{% url 'revista:article_detail' cuento.category cuento.slug %}" class="widget-link">
+                <h3 class="widget-recent-post-title">{{ cuento.title }}</h3>
+                <p class="article-author">{{ cuento.author.name }}</p>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if poemas %}
+    <div class="sidebar-widget side-section">
+        <h2 class="widget-title side-section-title"><a href="{% url 'revista:category' 'poemas' %}">Poemas</a></h2>
+        {% for poema in poemas %}
+        <div class="widget-recent-post">
+            <a href="{% url 'revista:article_detail' poema.category poema.slug %}" class="widget-link">
+                <h3 class="widget-recent-post-title">{{ poema.title }}</h3>
+                <p class="article-author">{{ poema.author.name }}</p>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+
     <div class="sidebar-widget" id="about-us">
         <a href="{% url 'revista:about_us' %}" class="widget-link">
             <h2 class="widget-title">¿Quiénes SOMOS?</h2>

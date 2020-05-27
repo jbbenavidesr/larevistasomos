@@ -97,8 +97,10 @@ class Article(models.Model):
         return markdown_to_html( self.body, self.images.all() )
     
     def get_first_image(self):
-        return self.images.all()[0]
-
+        if self.images.all():
+            return self.images.all()[0]
+        else:
+            return None
 
 class Image( models.Model ):
     name = models.CharField( max_length=100 )
