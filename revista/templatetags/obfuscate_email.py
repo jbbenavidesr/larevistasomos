@@ -30,7 +30,7 @@ class ObfuscateEmail(template.Node):
                  'for(var e=0;e<c.length;e++)d+=b.charAt(a.indexOf(c.charAt(e)));' \
                  'document.getElementById("{}").innerHTML="<a href=\\"mailto:"+d+"\\">"+{}+"</a>"'.format(key, cipher_text, id, self.link_body or 'd')
 
-        script = "eval(\""+ script.replace("\\","\\\\").replace('"','\\"') + "\")"
+        script = 'eval(\"'+ script.replace("\\","\\\\").replace('"','\\"') + '\")'
         script = '<script type="text/javascript">/*<![CDATA[*/'+script+'/*]]>*/</script>'
 
         return '<span id="{}">[javascript protected email address]</span>{}'.format(id, script)
