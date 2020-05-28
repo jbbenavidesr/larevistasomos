@@ -151,6 +151,11 @@ header {
     width: 10em;
 }
 
+.announcement {
+    text-align: center;
+    font-size: 700;
+}
+
 .time-date {
     margin: 1em 0;
 }
@@ -548,7 +553,7 @@ aside {
     }
 
     .small-post {
-        width: 48%;
+        min-width: 45%;
         border-bottom: none;
         padding: .5em 2em;
     }
@@ -786,7 +791,7 @@ textarea {
 
 .contacto-main {
     text-align: center;
-    height: 50vh;
+    padding: 2em;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -795,7 +800,7 @@ textarea {
     margin-bottom: 2em;
 }
 
-.contacto-link {
+.contacto-link a{
     display: block;
     padding: .7em 0em;
     background-color: #D3D3D3;
@@ -809,11 +814,15 @@ textarea {
     transform: scale(0.8);
 }
 
-.contacto-link:hover,
-.contacto-link:focus {
+.contacto-link a:hover,
+.contacto-link a:focus {
     background-color: #3c3c3c;
     color: #EBEBEB;
     transform: scale(1);
+}
+
+.contact-form {
+    text-align: left;
 }
 
 /*  Error */

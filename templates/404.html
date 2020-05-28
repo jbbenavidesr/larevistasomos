@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+ERROR 404 | Revista SOMOS
+{% endblock title %}
+
+{% block content %}
+<div class="container contacto-main error">
+    <div>
+        <h2 class="error-title">Error 404</h2>
+        <p>Ups, parece que te has equivocado...
+        </p>
+        <div class="contacto-link">
+            <a href="{% url 'revista:home' %}">Vuelve al inicio</a>
+        </div>
+        
+    </div>
+</div>
+{% endblock content %}
