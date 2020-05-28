@@ -10,7 +10,7 @@
         <h2 class="article-title">{{ object_list.0.title }}</h2>
         <img src="{{ object_list.0.get_first_image.image.url }}" alt="" class="article-image image-full">
         <p class="article-author">{{ object_list.0.author.name }}</p>
-        <p class="article-author">{{ object_list.0.author.school }}</p>
+        <p class="article-school">{{ object_list.0.author.school }}</p>
         <p class="article-body">
             {{ object_list.0.description | markdown | safe }}
         </p>
@@ -22,7 +22,7 @@
         <div class="article-recent-main">
             <h2 class="article-title">{{ post.title }}</h2>
             <p class="article-author">{{ post.author.name }}</p>
-            <p class="article-author">{{ post.author.school }}</p>
+            <p class="article-school">{{ post.author.school }}</p>
             <p class="article-body">
                 {{ post.description | markdown | safe }}
             </p>

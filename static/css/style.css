@@ -76,7 +76,8 @@ a:focus {
 }
 
 .article-read-more,  
-.article-author {
+.article-author,
+.article-school {
     font-size: .875rem;
 }
 
@@ -89,8 +90,12 @@ a:focus {
     letter-spacing: 1px;
 }
 
-.article-author {
-    margin-bottom: 1em;
+.article-author{
+    font-weight: 500;
+}
+
+.article-school {
+    margin-bottom: 1em; 
     font-weight: 300;
 }
 
@@ -600,12 +605,18 @@ aside {
     padding-top: 2em;
 }
 
+.article-container img {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
 .img-ref,
 .article-container img + a {
     text-align: right;
     font-size: 0.75rem;
     color: #707070;
     margin: 0;
+    float: right;
 }
 
 .content-title {
