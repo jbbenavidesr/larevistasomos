@@ -81,7 +81,7 @@
     </div>
 
     <div class="sidebar-widget" id="anterior">
-        <h2 class="widget-title"><a href="/edicion-anterior/">Archivo</a></h2>
+        <h2 class="widget-title"><a href="{% url 'revista:archive_index' %}">Archivo</a></h2>
         {% for post in archive_post %}
         <div class="widget-recent-post">
             <a href="{% url 'revista:article_detail' post.category.slug post.slug %}" class="widget-link">

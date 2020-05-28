@@ -15,6 +15,11 @@
                 {{ article.body_html | safe }}
             </div>
 
+            <div class="article-ref">
+                <h3>Referencias:</h3>
+                {{ article.bib | markdown | safe }}
+            </div>
+
         </main>
 {% endblock %}
 
