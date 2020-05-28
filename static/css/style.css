@@ -697,6 +697,18 @@ aside {
 
 .comment-form-container {
     margin-bottom: 1em;
+    position: relative;
+}
+
+.clap-btn {
+    position: absolute;
+    right: .5em;
+    top: .5em;
+}
+
+.comment-form-subtitle {
+    font-size: .875rem;
+    opacity: 0.5;
 }
 
 label {

@@ -1,16 +1,24 @@
 {% extends 'base.html' %}
 
+{% load static %}
 {% load markdown_extras %}
 
 {% block title %}
 {{ article.title }}
 {% endblock title %}
 
+{% block head_tags %}
+<link rel="stylesheet" href="{% static 'css/applause-button.css' %}" />
+<script src="{% static 'js/applause-button.js' %}"></script>
+{% endblock head_tags %}
+
 {% block content %}
 
         <main class="content">
             <h2 class="content-title">{{ article.title }}</h2>
-            
+            {% if not article.author.school %}
+            <p class="author-name">Por: {{ article.author }}</p>
+            {% endif %}
             <div class ="article-container">
                 {{ article.body_html | safe }}
             </div>
@@ -20,13 +28,15 @@
                 {{ article.bib | markdown | safe }}
             </div>
             {% endif %}
-            
+
             {% include 'revista/comments.html' %}
         </main>
 {% endblock %}
 
 {% block sidebar %}
+    {% if article.author.school %}
     <aside role="author" class="author">
+        
         <div class="container container-author">
             <img src="{{ article.author.photo.url }}" alt="" class="author-image">
             <p class="author-name">{{ article.author }}</p>
@@ -35,8 +45,9 @@
             <p class="author-social"><i class="fab fa-instagram"></i>
                     <a href="{{ article.author.ig_url }}" target="_blank">{{ article.author.ig_user }}</a></p>
             {% endif %}
-        </div>
+        </div>   
     </aside>
+    {% endif %} 
 {% endblock  %}
 
 
