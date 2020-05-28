@@ -14,12 +14,14 @@
             <div class ="article-container">
                 {{ article.body_html | safe }}
             </div>
-
+            {% if article.bib %}
             <div class="article-ref">
                 <h3>Referencias:</h3>
                 {{ article.bib | markdown | safe }}
             </div>
-
+            {% endif %}
+            
+            {% include 'revista/comments.html' %}
         </main>
 {% endblock %}
 
@@ -29,12 +31,12 @@
             <img src="{{ article.author.photo.url }}" alt="" class="author-image">
             <p class="author-name">{{ article.author }}</p>
             <p class="author-school">{{ article.author.school }}</p>
+            {% if article.author.ig_user %}
+            <p class="author-social"><i class="fab fa-instagram"></i>
+                    <a href="{{ article.author.ig_url }}" target="_blank">{{ article.author.ig_user }}</a></p>
+            {% endif %}
         </div>
     </aside>
 {% endblock  %}
 
-{% block extra_content %}
-    {% include 'revista/comments.html' %}
-{% endblock  %}
-        
 

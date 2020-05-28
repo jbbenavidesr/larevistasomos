@@ -1,3 +1,11 @@
+html {
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
 body {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
@@ -587,7 +595,8 @@ aside {
     padding-top: 2em;
 }
 
-.img-ref {
+.img-ref,
+.article-container img + a {
     text-align: right;
     font-size: 0.75rem;
     color: #707070;
@@ -680,6 +689,36 @@ aside {
         text-align: left;
     }
 }
+
+/* Comments section */
+.comment-form-container p {
+    margin: .3em auto;
+}
+
+.comment-form-container {
+    margin-bottom: 1em;
+}
+
+label {
+    display: block;
+    margin: 0;
+    font-weight: 700;
+}
+
+input,
+textarea {
+    width: 100%;
+}
+
+.submit-btn {
+    border-radius: 0;
+    height: 2.5em;
+    width: 20%;
+    margin: 1em auto;
+    font-weight: 700;
+       
+}
+
 
 /*  Movie list  */
 
