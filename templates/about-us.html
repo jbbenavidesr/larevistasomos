@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 
 {% load static %}
+{% load obfuscate_email %}
+
+{% block title %}
+¿Quiénes SOMOS? | Revista SOMOS
+{% endblock title %}
 
 {% block content %}
 <main class="content">
@@ -79,6 +84,7 @@
             <h2>Diseño y desarrollo web</h2>
             <img src="{% static 'images/juanber.jpg' %}" alt="" class="author-image">
             <p class="author-name">Juan Bernardo Benavides Rubio</p>
+            {% obfuscate_email jimmybutterflies@gmail.com %}
         </div>
     </div>
 {% endblock extra_content %}

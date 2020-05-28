@@ -1,3 +1,11 @@
+html {
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
 body {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
@@ -68,7 +76,8 @@ a:focus {
 }
 
 .article-read-more,  
-.article-author {
+.article-author,
+.article-school {
     font-size: .875rem;
 }
 
@@ -81,8 +90,12 @@ a:focus {
     letter-spacing: 1px;
 }
 
-.article-author {
-    margin-bottom: 1em;
+.article-author{
+    font-weight: 500;
+}
+
+.article-school {
+    margin-bottom: 1em; 
     font-weight: 300;
 }
 
@@ -141,6 +154,11 @@ header {
 
 .logo{
     width: 10em;
+}
+
+.announcement {
+    text-align: center;
+    font-size: 700;
 }
 
 .time-date {
@@ -540,7 +558,7 @@ aside {
     }
 
     .small-post {
-        width: 48%;
+        min-width: 45%;
         border-bottom: none;
         padding: .5em 2em;
     }
@@ -587,11 +605,18 @@ aside {
     padding-top: 2em;
 }
 
-.img-ref {
+.article-container img {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.img-ref,
+.article-container img + a {
     text-align: right;
     font-size: 0.75rem;
     color: #707070;
     margin: 0;
+    float: right;
 }
 
 .content-title {
@@ -681,6 +706,48 @@ aside {
     }
 }
 
+/* Comments section */
+.comment-form-container p {
+    margin: .3em auto;
+}
+
+.comment-form-container {
+    margin-bottom: 1em;
+    position: relative;
+}
+
+.clap-btn {
+    position: absolute;
+    right: .5em;
+    top: .5em;
+}
+
+.comment-form-subtitle {
+    font-size: .875rem;
+    opacity: 0.5;
+}
+
+label {
+    display: block;
+    margin: 0;
+    font-weight: 700;
+}
+
+input,
+textarea {
+    width: 100%;
+}
+
+.submit-btn {
+    border-radius: 0;
+    height: 2.5em;
+    width: 20%;
+    margin: 1em auto;
+    font-weight: 700;
+       
+}
+
+
 /*  Movie list  */
 
 .movie-container {
@@ -735,7 +802,7 @@ aside {
 
 .contacto-main {
     text-align: center;
-    height: 50vh;
+    padding: 2em;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -744,7 +811,7 @@ aside {
     margin-bottom: 2em;
 }
 
-.contacto-link {
+.contacto-link a{
     display: block;
     padding: .7em 0em;
     background-color: #D3D3D3;
@@ -758,11 +825,15 @@ aside {
     transform: scale(0.8);
 }
 
-.contacto-link:hover,
-.contacto-link:focus {
+.contacto-link a:hover,
+.contacto-link a:focus {
     background-color: #3c3c3c;
     color: #EBEBEB;
     transform: scale(1);
+}
+
+.contact-form {
+    text-align: left;
 }
 
 /*  Error */

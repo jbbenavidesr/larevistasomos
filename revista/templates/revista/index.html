@@ -5,24 +5,24 @@
 
 {% block content %}
 <main>
-    {% if object_list.0 %}
+    {% if object_list %}
     <article class="article-featured">
         <h2 class="article-title">{{ object_list.0.title }}</h2>
         <img src="{{ object_list.0.get_first_image.image.url }}" alt="" class="article-image image-full">
         <p class="article-author">{{ object_list.0.author.name }}</p>
-        <p class="article-author">{{ object_list.0.author.school }}</p>
+        <p class="article-school">{{ object_list.0.author.school }}</p>
         <p class="article-body">
             {{ object_list.0.description | markdown | safe }}
         </p>
         <a href="{% url 'revista:article_detail' object_list.0.category.slug object_list.0.slug %}" class="article-read-more">Leer más...</a>
     </article>
-    {% endif %}
+    
     {% for post in object_list|slice:"1:" %}
     <article class="article-recent">
         <div class="article-recent-main">
             <h2 class="article-title">{{ post.title }}</h2>
             <p class="article-author">{{ post.author.name }}</p>
-            <p class="article-author">{{ post.author.school }}</p>
+            <p class="article-school">{{ post.author.school }}</p>
             <p class="article-body">
                 {{ post.description | markdown | safe }}
             </p>
@@ -35,6 +35,16 @@
         </div>
     </article>
     {% endfor %}
+    {% else %}
+    <div class="container contacto-main error">
+        <div>
+            <h2 class="error-title">Próximamente</h2>
+            <p>A partir del sábado 30 de mayo, podrás encontrar contenido completamente nuevo.
+            </p>
+            <a href="{% url 'revista:archive_index' %}" class="contacto-link">¡Lee nuestro contenido anterior!</a>
+        </div>
+    </div>
+    {% endif %}
 </main>
 {% endblock content %}
 
