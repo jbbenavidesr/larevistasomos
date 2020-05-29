@@ -41,7 +41,9 @@
             <h2 class="error-title">Próximamente</h2>
             <p>A partir del sábado 30 de mayo, podrás encontrar contenido completamente nuevo.
             </p>
-            <a href="{% url 'revista:archive_index' %}" class="contacto-link">¡Lee nuestro contenido anterior!</a>
+            <div class="contacto-link">
+                <a href="{% url 'revista:archive_index' %}">¡Lee nuestro contenido anterior!</a>
+            </div>
         </div>
     </div>
     {% endif %}
