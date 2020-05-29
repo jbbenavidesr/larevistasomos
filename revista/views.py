@@ -131,6 +131,7 @@ class ArchiveCategory(generic.ListView):
         # Add in a QuerySet of all the books
         context['archive_post'] = Article.objects.filter(
             pub_date__gte = datetime.date(2020, 5, 1),
+            pub_date__lte = timezone.now(),
             category = self.category
         ).order_by('-pub_date')[:3]
 
