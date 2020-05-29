@@ -18,7 +18,7 @@
             </p>
         </a>
     </div>
-
+    {% if archive_post %}
     <div class="sidebar-widget" id="anterior">
         <h2 class="widget-title"><a href="{% url 'revista:category' category.slug %}">Edición actual</a></h2>
         {% for post in archive_post %}
@@ -30,5 +30,6 @@
         </div>
         {% endfor %}
     </div>
+    {% endif %}
 </aside>
 {% endblock sidebar %}
