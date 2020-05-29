@@ -558,7 +558,7 @@ aside {
     }
 
     .small-post {
-        min-width: 45%;
+        width: 45%;
         border-bottom: none;
         padding: .5em 2em;
     }

@@ -15,9 +15,9 @@ def navbar(request):
             'name': 'Contáctenos', 
             'link': 'contact:contact'
         },
-        'about-us': {
+        'about_us': {
             'name': '¿Quienes SOMOS?', 
-            'link': 'revista:about-us'
+            'link': 'revista:about_us'
         },
         'home': {
             'name': 'Inicio', 
@@ -25,7 +25,7 @@ def navbar(request):
         },
         'archive': {
             'name': 'Archivo', 
-            'link': 'revista:archive'
+            'link': 'revista:archive_index'
         }
     }
     return kwargs
