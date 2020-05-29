@@ -158,7 +158,7 @@ header {
 
 .announcement {
     text-align: center;
-    font-size: 700;
+    font-weight: 700;
 }
 
 .time-date {
@@ -606,7 +606,7 @@ aside {
 }
 
 .article-container img {
-    max-width: 100%;
+    width: 100%;
     margin: 0 auto;
 }
 
