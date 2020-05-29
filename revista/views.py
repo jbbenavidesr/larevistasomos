@@ -89,18 +89,55 @@ class ArchiveIndex(generic.ListView):
 
 
 class CategoryList(generic.ListView):
-    template_name = 'revista/index.html'
+    template_name = 'revista/category_list.html'
 
     def get_queryset(self):
         self.category = get_object_or_404(Category, slug=self.kwargs['category'])
         startdate = datetime.date(2020, 5, 1)
         enddate = timezone.now()
         return Article.objects.filter(
-            category=self.category,
+            category= self.category,
             pub_date__gte = startdate,
             pub_date__lte = enddate  
         )
     
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet of all the books
+        context['archive_post'] = Article.objects.filter(
+            pub_date__lte = datetime.date(2020, 5, 1),
+            category = self.category
+        ).order_by('-pub_date')[:3]
+
+        context['category'] = self.category
+
+        return context
+
+class ArchiveCategory(generic.ListView):
+    template_name = 'revista/category_list.html'
+
+    def get_queryset(self):
+        self.category = get_object_or_404(Category, slug=self.kwargs['category'])
+        enddate = datetime.date(2020, 5, 1)
+        return Article.objects.filter(
+            category= self.category,
+            pub_date__lte = enddate  
+        )
+    
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet of all the books
+        context['archive_post'] = Article.objects.filter(
+            pub_date__gte = datetime.date(2020, 5, 1),
+            category = self.category
+        ).order_by('-pub_date')[:3]
+
+        context['category_name'] = self.category.name
+        context['category_slug'] = self.category.slug
+
+        return context
 
 def article_detail(request, category, slug):
     article = get_object_or_404(Article, slug=slug)

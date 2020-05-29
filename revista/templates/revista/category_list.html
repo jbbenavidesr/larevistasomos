@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load markdown_extras %}
+
+{% block title %}
+{{ category.name }} | Revista SOMOS
+{% endblock title %}
+
+{% block content %}
+<main class="container container-flex container-wrap">
+    {% if object_list %}
+    
+    {% for post in object_list %}
+        {% if post.description %}
+        <article class="article-recent">
+            <div class="article-recent-main">
+                <h2 class="article-title">{{ post.title }}</h2>
+                <p class="article-author">{{ post.author.name }}</p>
+                <p class="article-school">{{ post.author.school }}</p>
+                <p class="article-body">
+                    {{ post.description | markdown | safe }}
+                </p>
+                <a href="{% url 'revista:article_detail' post.category.slug post.slug %}" class="article-read-more">Leer más...</a>
+            </div>
+            <div class="article-recent-secondary">
+                {% if post.images.all %}
+                <img src="{{ post.get_first_image.image.url }}" alt="" class="article-image">
+                {% endif %}
+            </div>
+        </article>
+        {% else %}
+        <article class="small-post poem-post">
+            <a href="{% url 'revista:article_detail' post.category.slug post.slug %}" class="widget-link">
+                <h3 class="modern-life-post-title">{{ post.title }}</h3>
+                <img src="{{ post.author.photo.url }}" alt="" class="author-image">
+                <p class="author-name"> {{ post.author.name }}</p>
+                <p class="author-school">{{ post.author.school }}</p>
+            </a>
+        </article>
+        {% endif %}
+    {% endfor %}
+    {% else %}
+    <div class="container contacto-main error">
+        <div>
+            <h2 class="error-title">Próximamente</h2>
+            <p>A partir del sábado 30 de mayo, podrás encontrar contenido completamente nuevo.
+            </p>
+            <div class="contacto-link">
+                <a href="{% url 'revista:archive_index' %}">¡Lee nuestro contenido anterior!</a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</main>
+{% endblock content %}
+
+{% block sidebar %}
+<aside class= "sidebar">
+
+    <div class="sidebar-widget" id="about-us">
+        <a href="{% url 'revista:about_us' %}" class="widget-link">
+            <h2 class="widget-title">¿Quiénes SOMOS?</h2>
+            <img src="{% static 'images/logo.jpg' %}" alt="" class="widget-image">
+            <p class="widget-body">
+                La voz de la juventud
+            </p>
+        </a>
+    </div>
+
+    <div class="sidebar-widget" id="anterior">
+        <h2 class="widget-title"><a href="{% url 'revista:archive_category' category.slug %}">Archivo</a></h2>
+        {% for post in archive_post %}
+        <div class="widget-recent-post">
+            <a href="{% url 'revista:article_detail' post.category.slug post.slug %}" class="widget-link">
+                <h3 class="widget-recent-post-title">{{ post.title }}</h3>
+                <img src="{{ post.get_first_image.image.url }}" alt="" class="widget-image">
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</aside>
+{% endblock sidebar %}
