@@ -43,11 +43,11 @@
     {% else %}
     <div class="container contacto-main error">
         <div>
-            <h2 class="error-title">Próximamente</h2>
-            <p>A partir del sábado 30 de mayo, podrás encontrar contenido completamente nuevo.
+            <h2 class="error-title">Ups, no hay articulos en esta sección</h2>
+            <p>Lamentablemente, no hay ningún qrtículo en esta sección.
             </p>
             <div class="contacto-link">
-                <a href="{% url 'revista:archive_index' %}">¡Lee nuestro contenido anterior!</a>
+                <a href="{% url 'revista:archive_index' %}">¡Vuelve al inicio!</a>
             </div>
         </div>
     </div>
@@ -67,7 +67,7 @@
             </p>
         </a>
     </div>
-
+    {% if archive_post %}
     <div class="sidebar-widget" id="anterior">
         <h2 class="widget-title"><a href="{% url 'revista:archive_category' category.slug %}">Archivo</a></h2>
         {% for post in archive_post %}
@@ -79,5 +79,6 @@
         </div>
         {% endfor %}
     </div>
+    {% endif %}
 </aside>
 {% endblock sidebar %}

@@ -115,7 +115,7 @@ class CategoryList(generic.ListView):
         return context
 
 class ArchiveCategory(generic.ListView):
-    template_name = 'revista/category_list.html'
+    template_name = 'revista/archive_category.html'
 
     def get_queryset(self):
         self.category = get_object_or_404(Category, slug=self.kwargs['category'])
@@ -134,8 +134,7 @@ class ArchiveCategory(generic.ListView):
             category = self.category
         ).order_by('-pub_date')[:3]
 
-        context['category_name'] = self.category.name
-        context['category_slug'] = self.category.slug
+        context['category'] = self.category
 
         return context
 
