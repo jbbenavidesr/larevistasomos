@@ -116,9 +116,15 @@ class Image( models.Model ):
 
     image = models.ImageField(upload_to= path)
     source = models.URLField('Fuente', blank = True)
+    update = models.DateTimeField('Última modificación', auto_now=True)
 
     def __str__( self ):
         return self.name
+
+    class Meta:
+        ordering = ['-update']
+        verbose_name = 'Imagen'
+        verbose_name_plural = 'Imagenes'
 
 
 class Comment(models.Model):

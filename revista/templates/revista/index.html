@@ -5,7 +5,6 @@
 
 {% block content %}
 <main>
-    {% if object_list %}
     <article class="article-featured">
         <h2 class="article-title">{{ object_list.0.title }}</h2>
         <img src="{{ object_list.0.get_first_image.image.url }}" alt="" class="article-image image-full">
@@ -35,18 +34,6 @@
         </div>
     </article>
     {% endfor %}
-    {% else %}
-    <div class="container contacto-main error">
-        <div>
-            <h2 class="error-title">Próximamente</h2>
-            <p>A partir del sábado 30 de mayo, podrás encontrar contenido completamente nuevo.
-            </p>
-            <div class="contacto-link">
-                <a href="{% url 'revista:archive_index' %}">¡Lee nuestro contenido anterior!</a>
-            </div>
-        </div>
-    </div>
-    {% endif %}
 </main>
 {% endblock content %}
 

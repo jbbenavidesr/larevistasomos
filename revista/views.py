@@ -27,7 +27,7 @@ class Index(generic.ListView):
             category__slug = 'cuentos'
         ).exclude(
             category__slug = 'poemas'
-        ).order_by('-pub_date')
+        ).order_by('-pub_date', '-update')
     
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
