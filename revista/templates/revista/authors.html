@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+Autores | Revista SOMOS
+{% endblock title %}
+
+{% block content %}
+<main class="container container-flex container-wrap">
+    {% for author in object_list %}
+        <article class="small-post poem-post">
+            <a href="{% url 'revista:author_list' author.slug %}" class="widget-link">
+                <h3 class="modern-life-post-title">{{ author.name }}</h3>
+                {% if author.photo %}<img src="{{ author.photo.url }}" alt="" class="author-image">{% endif %}
+                <p class="author-school">{{ author.school }}</p>
+                {% if article.author.ig_user %}
+                <p class="author-social"><i class="fab fa-instagram"></i>
+                        <a href="{{ author.ig_url }}" target="_blank">{{ article.author.ig_user }}</a></p>
+                {% endif %}
+            </a>
+        </article>
+    {% endfor %}
+    
+</main>
+{% endblock content %}

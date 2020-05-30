@@ -54,6 +54,7 @@
                     {% for category in categories %}
                     <li><a href="{% url 'revista:category' category.slug %}">{{ category.name }}</a></li>
                     {% endfor %}
+                    <li><a href="{% url authors.link %}"> {{ authors.name }}</a></li>
                     <li><a href="{% url contact.link %}"> {{ contact.name }}</a></li>
                 </ul>
             </nav>
@@ -93,6 +94,7 @@
                     <li><a href="{% url 'revista:category' category.slug %}">{{ category.name }}</a></li>
                     {% endfor %}
                     <li><a href="{% url archive.link %}">{{ archive.name }}</a></li>
+                    <li><a href="{% url authors.link %}"> {{ authors.name }}</a></li>
                     <li><a href="{% url about_us.link %}">{{ about_us.name}}</a></li>
                     <li><a href="{% url contact.link %}"> {{ contact.name }}</a></li>
                 </ul>

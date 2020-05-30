@@ -23,6 +23,10 @@ def navbar(request):
             'name': 'Inicio', 
             'link': 'revista:home'
         },
+        'authors': {
+            'name': 'Autores', 
+            'link': 'revista:authors'
+        },
         'archive': {
             'name': 'Archivo', 
             'link': 'revista:archive_index'

@@ -43,7 +43,20 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name',)
     prepopulated_fields = {'slug': ('name',)}
 
+class AuthorAdmin(admin.ModelAdmin):
+    fieldsets = (
+        (None, {
+            'fields': ('name', 'school', 'ig_user', 'photo'),
+        }),
+        ('Advanced options', {
+            'classes': ('collapse',),
+            'fields': ('slug',),
+        }),
+    )
+    list_display = ('name',)
+    prepopulated_fields = {'slug': ('name',)}
+
 admin.site.register(Category, CategoryAdmin)
-admin.site.register(Author)
+admin.site.register(Author, AuthorAdmin)
 admin.site.register(Article, ArticleAdmin)
 

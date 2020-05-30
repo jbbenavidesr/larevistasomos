@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load markdown_extras %}
+
+{% block title %}
+{{ author.name }} | Autor | Revista SOMOS
+{% endblock title %}
+
+{% block content %}
+<main class="container container-flex container-wrap">
+    
+    {% for post in object_list %}
+    
+        <article class="small-post poem-post">
+            <a href="{% url 'revista:article_detail' post.category.slug post.slug %}" class="widget-link">
+                <h3 class="modern-life-post-title">{{ post.title }}</h3>
+                {% if post.images.all %}
+                <img src="{{ post.get_first_image.image.url }}" alt="" class="author-image">
+                {% else %}
+                <img src="{{ post.author.photo.url }}" alt="" class="author-image">
+                {% endif %}
+                <p class="author-name"> {{ post.author.name }}</p>
+                <p class="author-school">{{ post.author.school }}</p>
+            </a>
+        </article>
+        
+    {% endfor %}
+</main>
+{% endblock content %}
+
+{% block sidebar %}
+    <aside role="author" class="author">
+        
+        <div class="container container-author">
+            {% if author.photo %}<img src="{{ author.photo.url }}" alt="" class="author-image">{% endif %}
+            <p class="author-name">{{ author.name }}</p>
+            <p class="author-school">{{ author.school }}</p>
+            {% if author.ig_user %}
+            <p class="author-social"><i class="fab fa-instagram"></i>
+                    <a href="{{ author.ig_url }}" target="_blank">{{ author.ig_user }}</a></p>
+            {% endif %}
+        </div>   
+    </aside>
+{% endblock  %}

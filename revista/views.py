@@ -5,7 +5,7 @@ from django.views import generic
 from django.http import HttpResponse
 from django.utils import timezone
 
-from .models import Article, Comment, Category
+from .models import Article, Comment, Category, Author
 from .forms import CommentForm
 
 
@@ -136,6 +136,29 @@ class ArchiveCategory(generic.ListView):
         ).order_by('-pub_date')[:3]
 
         context['category'] = self.category
+
+        return context
+
+class AuthorList(generic.ListView):
+    model = Author
+    template_name = "revista/authors.html"
+
+class AuthorArticleList(generic.ListView):
+    template_name = 'revista/author_list.html'
+
+    def get_queryset(self):
+        self.author = get_object_or_404(Author, slug=self.kwargs['author'])
+        enddate = timezone.now()
+        return Article.objects.filter(
+            author= self.author,
+            pub_date__lte = enddate  
+        )
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add the author
+        context['author'] = self.author
 
         return context
 
