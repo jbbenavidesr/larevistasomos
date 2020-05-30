@@ -31,7 +31,6 @@ SECURE_SSL_REDIRECT = True
 # Application definition
 
 INSTALLED_APPS = [
-    'gallery.apps.GalleryConfig',
     'contact.apps.ContactConfig',
     'revista.apps.RevistaConfig',
     'django.contrib.admin',
