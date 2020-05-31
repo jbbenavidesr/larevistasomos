@@ -770,6 +770,10 @@ aside {
     top: .5em;
 }
 
+.clap-btn-sidebar {
+    margin: 1em auto;
+}
+
 .comment-form-subtitle {
     font-size: .875rem;
     opacity: 0.5;
