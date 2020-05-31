@@ -19,6 +19,9 @@
             {% if not article.author.school %}
             <p class="author-name">Por: {{ article.author }}</p>
             {% endif %}
+            <span class="comment-date">
+                {{ article.pub_date }}
+            </span>
             <div class ="article-container">
                 {{ article.body_html | safe }}
             </div>

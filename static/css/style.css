@@ -753,6 +753,43 @@ textarea {
        
 }
 
+.comment-count {
+    margin-bottom: 1em;
+    position: relative;
+}
+
+.comment-count::after {
+    content: '';
+    position: absolute;
+    background: #e3e3e3;
+    height: 2.5em;
+    z-index: -1;
+    opacity: 0.5;
+    left: -1em;
+    width: 15em;
+    bottom: -.5em;
+}
+
+.comment {
+    margin-bottom: 2em;
+    border-bottom: #d3d3d3 solid 2px;
+}
+
+.comment:last-child {
+    border-bottom: none;
+}
+
+.comment-name {
+    margin: 0;
+    text-transform: capitalize;
+}
+
+.comment-date {
+    font-size: .785rem;
+    opacity: .625;
+    margin-bottom: 1em;
+}
+
 
 /*  Movie list  */
 
