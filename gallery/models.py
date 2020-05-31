@@ -18,3 +18,7 @@ class Gallery(models.Model):
     image = models.ImageField("Foto", upload_to=path)
 
     status = models.IntegerField("Estado", choices=STATUS, default = 1)
+
+    class Meta:
+        verbose_name = 'Imagen'
+        verbose_name_plural = 'Imagenes'

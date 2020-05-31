@@ -1,5 +1,5 @@
 <div class="gallery">
-    <h2 class="gallery-title">Galería</h2>
+    <a href="{% url 'gallery:gallery' %}"><h2 class="gallery-title">Galería</h2></a>
     <div class="carousel js-flickity"
         data-flickity-options='{ "wrapAround": true }'>
         {% for photo in gallery %}

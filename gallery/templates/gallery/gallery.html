@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Galería | Revista SOMOS
+{% endblock title %}
+
+{% block before %}
+<h1 class="gallery-title">Gallery</h1>
+{% endblock before %}
+
+{% block content %}
+<div class="gallery-grid">
+    {% for photo in object_list %}
+  <div class="gallery-grid__item">
+    <a href="{% url 'gallery:image' photo.slug %}">
+        <img class='gallery-grid__img' src='{{ photo.image.url }}' alt=''>
+        <p class="gallery-author">{{ photo.author.name }}</p>
+        <p class="gallery-school">{{ photo.author.school }}</p>
+    </a>
+  </div>
+  {% endfor %}
+</div>
+{% endblock content %}
+

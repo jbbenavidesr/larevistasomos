@@ -357,7 +357,8 @@ footer h3 {
 
 .gallery-title {
     font-size: 2.5rem;
-    text-shadow: 2px 3px 4px rgba(0,0,0,0.25)
+    text-shadow: 2px 3px 4px rgba(0,0,0,0.25);
+    text-align: center;
 }
 
 .gallery-cell.is-selected{
@@ -375,13 +376,52 @@ footer h3 {
     border-radius: .5em;
 }
 
-.gallery-author {
-    font-size: .7rem;
+.gallery-author,
+.gallery-school {
+    font-size: .825rem;
     color: #707070;
     padding-top: .3em;
     text-transform: uppercase;
     font-weight: 700;
     letter-spacing: 1px;
+}
+
+.gallery-school {
+    font-size: .7rem;
+}
+
+.gallery-grid {
+    columns: 5 200px;
+    column-gap: 1.5rem;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.gallery-grid__item {
+    width: 150px;
+    margin: 0 1.5rem 1.5rem 0;
+    display: inline-block;
+    width: 100%;
+    border: solid 2px black;
+    padding: 5px;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+    border-radius: 5px;
+    transition: all .25s ease-in-out;
+}
+
+.gallery-grid__item:hover .gallery-grid__img {
+    filter: grayscale(0);
+}
+
+.gallery-grid__item:hover {
+    border-color: coral;
+}
+
+.gallery-grid__img {
+    width: 100%;
+    filter: grayscale(100%);
+    border-radius: 5px;
+    transition: all .25s ease-in-out;
 }
 /* Articles */
 
