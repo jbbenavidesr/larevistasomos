@@ -390,6 +390,10 @@ footer h3 {
     font-size: .7rem;
 }
 
+.gallery-link {
+    text-decoration: none;
+}
+
 .gallery-grid {
     columns: 5 200px;
     column-gap: 1.5rem;
@@ -398,7 +402,6 @@ footer h3 {
 }
 
 .gallery-grid__item {
-    width: 150px;
     margin: 0 1.5rem 1.5rem 0;
     display: inline-block;
     width: 100%;
