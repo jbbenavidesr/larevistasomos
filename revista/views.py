@@ -7,6 +7,7 @@ from django.utils import timezone
 
 from .models import Article, Comment, Category, Author
 from .forms import CommentForm
+from gallery.models import Gallery
 
 
 class Index(generic.ListView):
@@ -48,6 +49,9 @@ class Index(generic.ListView):
             pub_date__gte = self.startdate,
             pub_date__lte = self.enddate  
         )
+
+        context['gallery'] = Gallery.objects.order_by('?')[:10]
+        
         return context
 
 class ArchiveIndex(generic.ListView):

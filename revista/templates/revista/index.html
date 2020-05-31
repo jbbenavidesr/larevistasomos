@@ -3,6 +3,12 @@
 {% load static %}
 {% load markdown_extras %}
 
+{% block before %}
+{% if gallery %}
+{% include 'gallery/carrousel.html' %}
+{% endif %}
+{% endblock before %}
+
 {% block content %}
 <main>
     <article class="article-featured">
@@ -92,4 +98,7 @@
     </div>
 </aside>
 {% endblock sidebar %}
-    
+
+{% block scripts %}
+<script src="{% static 'js/flickity.pkgd.min.js' %}"></script>
+{% endblock scripts %}

@@ -1,0 +1,12 @@
+<div class="gallery">
+    <h2 class="gallery-title">Galería</h2>
+    <div class="carousel js-flickity"
+        data-flickity-options='{ "wrapAround": true }'>
+        {% for photo in gallery %}
+        <div class="gallery-cell">
+            <img src="{{ photo.image.url }}" alt="" class="img-gallery">
+            <p class="gallery-author">{{ photo.author.name }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
