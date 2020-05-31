@@ -395,7 +395,7 @@ footer h3 {
 }
 
 .gallery-grid {
-    columns: 5 200px;
+    columns: 5 300px;
     column-gap: 1.5rem;
     width: 90%;
     margin: 0 auto;
@@ -405,7 +405,7 @@ footer h3 {
     margin: 0 1.5rem 1.5rem 0;
     display: inline-block;
     width: 100%;
-    border: solid 2px black;
+    border: solid 2px coral;
     padding: 5px;
     box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
     border-radius: 5px;
@@ -416,15 +416,24 @@ footer h3 {
     filter: grayscale(0);
 }
 
-.gallery-grid__item:hover {
-    border-color: coral;
-}
-
 .gallery-grid__img {
     width: 100%;
-    filter: grayscale(100%);
     border-radius: 5px;
     transition: all .25s ease-in-out;
+}
+
+@media (min-width:700px) {
+    .gallery-grid__img {
+        filter: grayscale(100%);
+    }
+
+    .gallery-grid__item {
+        border-color: black;
+    }
+
+    .gallery-grid__item:hover {
+        border-color: coral;
+    }
 }
 /* Articles */
 
