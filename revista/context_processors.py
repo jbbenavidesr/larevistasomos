@@ -30,6 +30,10 @@ def navbar(request):
         'archive': {
             'name': 'Archivo', 
             'link': 'revista:archive_index'
+        },
+        'gallery_page': {
+            'name': 'Galería', 
+            'link': 'gallery:gallery'
         }
     }
     return kwargs
