@@ -7,6 +7,11 @@
 {{ author.name }} | Autor | Revista SOMOS
 {% endblock title %}
 
+{% block head_tags %}
+<link rel="stylesheet" href="{% static 'css/applause-button.css' %}" />
+<script src="{% static 'js/applause-button.js' %}"></script>
+{% endblock head_tags %}
+
 {% block content %}
 <main class="container container-flex container-wrap">
     
@@ -50,6 +55,9 @@
             <p class="author-social"><i class="fab fa-instagram"></i>
                     <a href="{{ author.ig_url }}" target="_blank">{{ author.ig_user }}</a></p>
             {% endif %}
-        </div>   
+        </div>
+        <div class="clap-btn-sidebar">
+            <applause-button style="width: 58px; height: 58px;"/>   
+        </div> 
     </aside>
 {% endblock  %}
