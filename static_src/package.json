@@ -6,5 +6,9 @@
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "Juan Bernardo Benavides Rubio",
-    "license": "ISC"
+    "license": "ISC",
+    "dependencies": {
+        "gorko": "^0.2.3",
+        "sass": "^1.26.10"
+    }
 }
