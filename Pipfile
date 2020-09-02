@@ -1,0 +1,18 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+django = "~=3.1.0"
+psycopg2-binary = "==2.8.5"
+environs = {extras = ["django"], version = "==8.0.0"}
+markdown = "==3.2.2"
+pillow = "==7.2.0"
+django-storages = "==1.10"
+boto3 = "==1.14"
+
+[requires]
+python_version = "3.8"

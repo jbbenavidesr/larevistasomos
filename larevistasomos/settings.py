@@ -1,26 +1,28 @@
-import os
+from pathlib import Path
 
-import django_heroku
-import dj_database_url
-import dotenv
+from environs import Env
+
+# import django_heroku
+# import dj_database_url
+# import dotenv
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
-dotenv_file = os.path.join(BASE_DIR, ".env")
-if os.path.isfile(dotenv_file):
-    dotenv.load_dotenv(dotenv_file)
+env = Env()
+env.read_env()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("SECRET_KEY")
+SECRET_KEY = env("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(os.environ.get("DEBUG", ""))
+DEBUG = env.bool("DJANGO_DEBUG")
 
-ALLOWED_HOSTS = ['larevistasomos.herokuapp.com', '.larevistasomos.com']
+ALLOWED_HOSTS = ['larevistasomos.herokuapp.com',
+                 '.larevistasomos.com', 'localhost', '127.0.0.1']
 
 # Deployment security
 """
@@ -31,15 +33,17 @@ SECURE_SSL_REDIRECT = True
 # Application definition
 
 INSTALLED_APPS = [
-    'gallery.apps.GalleryConfig',
-    'contact.apps.ContactConfig',
-    'revista.apps.RevistaConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Local
+    'gallery.apps.GalleryConfig',
+    'contact.apps.ContactConfig',
+    'revista.apps.RevistaConfig',
     'storages',
 ]
 
@@ -58,7 +62,7 @@ ROOT_URLCONF = 'larevistasomos.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [str(BASE_DIR.joinpath('templates'))],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -79,20 +83,22 @@ WSGI_APPLICATION = 'larevistasomos.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {}
-DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+DATABASES = {
+    'default': env.dj_db_url("DATABASE_URL",
+                             default="postgres://postgres@db/postgres")
+}
 
-# Email 
+# Email
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
+# SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
 
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = 'apikey' # this is exactly the value 'apikey'
-EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+# EMAIL_HOST = 'smtp.sendgrid.net'
+# EMAIL_HOST_USER = 'apikey' # this is exactly the value 'apikey'
+# EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -112,7 +118,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# LOGGING FIX 
+# LOGGING FIX
 
 LOGGING = {
     'version': 1,
@@ -173,12 +179,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+STATIC_URL = '/static/'
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+    str(BASE_DIR.joinpath('static')),
 )
+STATIC_ROOT = str(BASE_DIR.joinpath('staticfiles'))
+STATICFILE_FINDERS = [
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder"
+]
 
-AWS_ACCESS_KEY_ID = os.environ.get('S3_KEY', '')
-AWS_SECRET_ACCESS_KEY = os.environ.get('S3_SECRET','')
+AWS_ACCESS_KEY_ID = env('S3_KEY', '')
+AWS_SECRET_ACCESS_KEY = env('S3_SECRET', '')
 
 AWS_STORAGE_BUCKET_NAME = 'larevistasomos-media-upload'
 AWS_S3_REGION_NAME = 'us-east-1'
@@ -192,12 +204,7 @@ AWS_S3_OBJECT_PARAMETERS = {
 }
 
 AWS_LOCATION = 'static'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 
 DEFAULT_FILE_STORAGE = 'larevistasomos.storage_backends.MediaStorage'
-
-
-django_heroku.settings(locals(), staticfiles=False)
-
-del DATABASES['default']['OPTIONS']['sslmode']
