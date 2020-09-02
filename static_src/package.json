@@ -1,0 +1,10 @@
+{
+    "name": "larevistasomos",
+    "version": "2.1.0",
+    "description": "Frontend development for \"Revista SOMOS\"",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Juan Bernardo Benavides Rubio",
+    "license": "ISC"
+}

@@ -5,6 +5,9 @@
 __pycache__/
 local_settings.py
 
+static_compiled
+staticfiles
+
 db.sqlite3
 *.dump
 .env
