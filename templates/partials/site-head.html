@@ -1,0 +1,47 @@
+{% load static %}
+
+<a class="[ skip-link ] [ button ]" href="#main-content">Skip to content</a>
+<header role="banner" class="site-head">
+    <div class="[ wrapper ] [ font-secondary ]">
+        <div class="[ splitter ]">
+            <div class="">
+                <a href="{% url 'revista:home' %}"
+                    ><img
+                        src="{% static 'images/logo.jpg' %}"
+                        alt="logo de la revista"
+                        class=""
+                /></a>
+            </div>
+
+            <div class="">
+                <p>Bogotá, Colombia</p>
+                <p>Año {{ current_year }}</p>
+            </div>
+        </div>
+
+        {% block navigation %}
+
+        <nav class="[ nav ] [ site-head__nav ] [ gap-top-500 ]" aria-label="Primary">
+            <ul class="nav__list">
+                {% for category in categories %}
+                <li>
+                    <a href="{% url 'revista:category' category.slug %}"
+                        >{{ category.name }}</a
+                    >
+                </li>
+                {% endfor %}
+                <li>
+                    <a href="{% url authors.link %}">
+                        {{ authors.name }}</a
+                    >
+                </li>
+                <li>
+                    <a href="{% url contact.link %}">
+                        {{ contact.name }}</a
+                    >
+                </li>
+            </ul>
+        </nav>
+        {% endblock %}
+    </div>
+</header>

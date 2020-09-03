@@ -1,0 +1,6 @@
+.wrapper {
+    max-width: var(--wrap-with, 65rem);
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 get-size('500');
+}

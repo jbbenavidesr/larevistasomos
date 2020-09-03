@@ -3,7 +3,8 @@
     "version": "2.1.0",
     "description": "Frontend development for \"Revista SOMOS\"",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "start": "npx sass scss/global.scss ../static_compiled/css/global.css --watch",
+        "build": "npx sass scss/global.scss ../static_compiled/css/global.css --style=compressed"
     },
     "author": "Juan Bernardo Benavides Rubio",
     "license": "ISC",
