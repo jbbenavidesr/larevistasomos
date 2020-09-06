@@ -1,19 +1,19 @@
 {% load static %}
 
-<a class="[ skip-link ] [ button ]" href="#main-content">Skip to content</a>
+<a class="[ skip-link ] [ button ]" href="#main-content">Saltar al contenido</a>
 <header role="banner" class="site-head">
     <div class="[ wrapper ] [ font-secondary ]">
         <div class="[ splitter ]">
-            <div class="">
+            <div class="site-head__logo">
                 <a href="{% url 'revista:home' %}"
                     ><img
-                        src="{% static 'images/logo.jpg' %}"
+                        src="{% static 'images/somos-logo.png' %}"
                         alt="logo de la revista"
                         class=""
                 /></a>
             </div>
 
-            <div class="">
+            <div class="align-center">
                 <p>Bogotá, Colombia</p>
                 <p>Año {{ current_year }}</p>
             </div>

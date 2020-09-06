@@ -7,7 +7,7 @@ Autores | Revista SOMOS
 {% endblock title %}
 
 {% block content %}
-<main class="container container-flex container-wrap">
+<main id="main-content"  class="auto-grid">
     {% for author in object_list %}
         <article class="small-post poem-post">
             <a href="{% url 'revista:author_list' author.slug %}" class="widget-link">
@@ -21,6 +21,5 @@ Autores | Revista SOMOS
             </a>
         </article>
     {% endfor %}
-    
 </main>
 {% endblock content %}

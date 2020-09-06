@@ -9,93 +9,88 @@
 {% endif %}
 {% endblock before %}
 
+
 {% block content %}
-    <article class="article-featured">
-        <h2 class="article-title">{{ object_list.0.title }}</h2>
-        <img src="{{ object_list.0.get_first_image.image.url }}" alt="" class="article-image image-full">
-        <p class="article-author">{{ object_list.0.author.name }}</p>
-        <p class="article-school">{{ object_list.0.author.school }}</p>
-        <p class="article-body">
-            {{ object_list.0.description | markdown | safe }}
-        </p>
-        <a href="{% url 'revista:article_detail' object_list.0.category.slug object_list.0.slug %}" class="article-read-more">Leer más...</a>
-    </article>
-    
-    <div class="auto-grid">
-        {% for post in object_list|slice:"1:" %}
-        <article class="article-recent">
-            <div class="article-recent-main">
-                <h2 class="article-title">{{ post.title }}</h2>
-                <p class="article-author">{{ post.author.name }}</p>
-                <p class="article-school">{{ post.author.school }}</p>
-                <p class="article-body">
-                    {{ post.description | markdown | safe }}
-                </p>
-                <a href="{% url 'revista:article_detail' post.category.slug post.slug %}" class="article-read-more">Leer más...</a>
-            </div>
-            <div class="article-recent-secondary">
-                {% if post.images.all %}
-                <img src="{{ post.get_first_image.image.url }}" alt="" class="article-image">
+    <div class="with-sidebar">
+        <div>
+            <main id="main-content" class="flow">
+                <article class="flow">
+                    <h2 class="">{{ object_list.0.title }}</h2>
+                    <img src="{{ object_list.0.get_first_image.image.url }}" alt="" class="">
+                    <p class="">{{ object_list.0.author.name }}</p>
+                    <p class="">{{ object_list.0.author.school }}</p>
+                    <p class="">
+                        {{ object_list.0.description | markdown | safe }}
+                    </p>
+                    <a href="{% url 'revista:article_detail' object_list.0.category.slug object_list.0.slug %}" class="">Leer más...</a>
+                </article>
+                
+                <div class="auto-grid">
+                    {% for post in object_list|slice:"1:" %}
+                    <article class="flow">
+                        <div class="">
+                            <h2 class="">{{ post.title }}</h2>
+                            <p class="text-300">{{ post.author.name }}</p>
+                            <p class="text-300">{{ post.author.school }}</p>
+                            <p class="">
+                                {{ post.description | markdown | safe }}
+                            </p>
+                            <a href="{% url 'revista:article_detail' post.category.slug post.slug %}" class="text-300">Leer más...</a>
+                        </div>
+                        <div class="">
+                            {% if post.images.all %}
+                            <img src="{{ post.get_first_image.image.url }}" alt="" class="">
+                            {% endif %}
+                        </div>
+                    </article>
+                    {% endfor %}
+                </div>
+            </main>
+
+            <aside class="[ sidebar ] [ flow ]">
+                <div class="" id="about-us">
+                    <a href="{% url 'revista:about_us' %}" class="">
+                        <h2 class="">¿Quiénes SOMOS?</h2>
+                        <img src="{% static 'images/logo.jpg' %}" alt="" class="">
+                        <p class="">
+                            La voz de la juventud
+                        </p>
+                    </a>
+                </div>
+
+                {% if cuentos %}
+                <div class="flow">
+                    <h2 class=""><a href="{% url 'revista:category' 'cuentos' %}">Cuentos</a></h2>
+                    {% for cuento in cuentos %}
+                    <div class="">
+                        <a href="{% url 'revista:article_detail' cuento.category cuento.slug %}" class="widget-link">
+                            <h3 class="">{{ cuento.title }}</h3>
+                            <p class="">{{ cuento.author.name }}</p>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
                 {% endif %}
-            </div>
-        </article>
-        {% endfor %}
+
+                {% if poemas %}
+                <div class="flow">
+                    <h2 class=""><a href="{% url 'revista:category' 'poemas' %}">Poemas</a></h2>
+                    {% for poema in poemas %}
+                    <div class="">
+                        <a href="{% url 'revista:article_detail' poema.category poema.slug %}" class="widget-link">
+                            <h3 class="">{{ poema.title }}</h3>
+                            <p class="">{{ poema.author.name }}</p>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </aside>
+        </div>
     </div>
 {% endblock content %}
+    
 
-{% block sidebar %}
-
-    {% if cuentos %}
-    <div class="sidebar-widget side-section">
-        <h2 class="widget-title side-section-title"><a href="{% url 'revista:category' 'cuentos' %}">Cuentos</a></h2>
-        {% for cuento in cuentos %}
-        <div class="widget-recent-post">
-            <a href="{% url 'revista:article_detail' cuento.category cuento.slug %}" class="widget-link">
-                <h3 class="widget-recent-post-title">{{ cuento.title }}</h3>
-                <p class="article-author">{{ cuento.author.name }}</p>
-            </a>
-        </div>
-        {% endfor %}
-    </div>
-    {% endif %}
-
-    {% if poemas %}
-    <div class="sidebar-widget side-section">
-        <h2 class="widget-title side-section-title"><a href="{% url 'revista:category' 'poemas' %}">Poemas</a></h2>
-        {% for poema in poemas %}
-        <div class="widget-recent-post">
-            <a href="{% url 'revista:article_detail' poema.category poema.slug %}" class="widget-link">
-                <h3 class="widget-recent-post-title">{{ poema.title }}</h3>
-                <p class="article-author">{{ poema.author.name }}</p>
-            </a>
-        </div>
-        {% endfor %}
-    </div>
-    {% endif %}
-
-
-    <div class="sidebar-widget" id="about-us">
-        <a href="{% url 'revista:about_us' %}" class="widget-link">
-            <h2 class="widget-title">¿Quiénes SOMOS?</h2>
-            <img src="{% static 'images/logo.jpg' %}" alt="" class="widget-image">
-            <p class="widget-body">
-                La voz de la juventud
-            </p>
-        </a>
-    </div>
-
-    <div class="sidebar-widget" id="anterior">
-        <h2 class="widget-title"><a href="{% url 'revista:archive_index' %}">Archivo</a></h2>
-        {% for post in archive_post %}
-        <div class="widget-recent-post">
-            <a href="{% url 'revista:article_detail' post.category.slug post.slug %}" class="widget-link">
-                <h3 class="widget-recent-post-title">{{ post.title }}</h3>
-                <img src="{{ post.get_first_image.image.url }}" alt="" class="widget-image">
-            </a>
-        </div>
-        {% endfor %}
-    </div>
-{% endblock sidebar %}
 
 {% block scripts %}
 <script src="{% static 'js/flickity.pkgd.min.js' %}"></script>

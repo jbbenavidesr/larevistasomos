@@ -1,7 +1,5 @@
 {% load static %} 
 
-{% load obfuscate_email %}
-
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -48,90 +46,14 @@
         {% block before %} {% endblock before %}
 
         <div class="[ wrapper ]">
-            <div class="sidebar">
-                <div>
-                    <main id="main-content" class="">
-                    {% block content %} {% endblock %}
-                    </main>
-                    
-                    <aside class="">
-                    {% block sidebar %} {% endblock %}
-                    </aside>
-                </div>
-            </div>
+            {% block content %}
+            
+            {% endblock %}
         </div>
 
         {% block extra_content %} {% endblock %}
 
-        <footer class="bg-light">
-            <div class="">
-                <div class="invite">
-                    <h3>¿Tienes algo por contar?</h3>
-                    <p>
-                        Envíanos tu poema, cuento, foto, investigación y/o
-                        artículo a nuestro correo. <span></span>
-                        {% obfuscate_email revistasomos@glm.edu.co %}
-                    </p>
-                </div>
-                {% block footer_nav %}
-                <nav class="nav-footer">
-                    <h3>Navegación</h3>
-                    <ul>
-                        <li>
-                            <a href="{% url home.link %}">{{ home.name }}</a>
-                        </li>
-                        {% for category in categories %}
-                        <li>
-                            <a href="{% url 'revista:category' category.slug %}"
-                                >{{ category.name }}</a
-                            >
-                        </li>
-                        {% endfor %}
-                        <li>
-                            <a href="{% url gallery_page.link %}"
-                                >{{ gallery_page.name }}</a
-                            >
-                        </li>
-                        <li>
-                            <a href="{% url archive.link %}"
-                                >{{ archive.name }}</a
-                            >
-                        </li>
-                        <li>
-                            <a href="{% url authors.link %}">
-                                {{ authors.name }}</a
-                            >
-                        </li>
-                        <li>
-                            <a href="{% url about_us.link %}"
-                                >{{ about_us.name}}</a
-                            >
-                        </li>
-                        <li>
-                            <a href="{% url contact.link %}">
-                                {{ contact.name }}</a
-                            >
-                        </li>
-                    </ul>
-                </nav>
-                {% endblock %}
-                <div class="social-media">
-                    <h3 class="social-title">¡Síguenos!</h3>
-                    <a
-                        href="http://www.instagram.com/larevista.somos"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="bg-light-shade"
-                    >
-                        <i class="fab fa-instagram"> larevista.somos</i></a
-                    >
-                </div>
-            </div>
-
-            <small class="copyright"
-                >&copy; Copyright {{ current_year }}, Revista SOMOS.</small
-            >
-        </footer>
+        {% include 'partials/site-foot.html' %}
 
         {% block scripts %} {% endblock %}
     </body>

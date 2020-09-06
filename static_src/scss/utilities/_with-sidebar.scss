@@ -1,14 +1,14 @@
-.sidebar {
+.with-sidebar {
     overflow: hidden;
 
     > * {
         display: flex;
         flex-wrap: wrap;
-        margin: calc(var(--sidebar-gap, 1rem) / 2 * -1);
+        margin: calc(var(--sidebar-gap, 2rem) / 2 * -1);
     }
 
     > * > * {
-        margin: calc(var(--sidebar-gap, 1rem) / 2);
+        margin: calc(var(--sidebar-gap, 2rem) / 2);
         flex-basis: 20rem;
         flex-grow: 1;
     }
@@ -16,6 +16,6 @@
     > * > :first-child {
         flex-basis: 0;
         flex-grow: 999;
-        min-width: calc(50% - var(--sidebar-gap, 1rem));
+        min-width: calc(50% - var(--sidebar-gap, 2rem));
     }
 }

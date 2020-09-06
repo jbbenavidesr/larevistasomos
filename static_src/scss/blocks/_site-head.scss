@@ -1,0 +1,8 @@
+.site-head {
+    --wrap-width: 90rem;
+    margin: get-size('700') get-size('500');
+
+    &__logo {
+        max-width: 15rem;
+    }
+}

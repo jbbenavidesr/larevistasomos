@@ -11,8 +11,9 @@
 body {
     line-height: 1.5;
     overflow-x: hidden;
-    padding-bottom: get-size('600');
+    background: #fbf9fb;
 
+    @include apply-utility('font', 'base');
     @include apply-utility('weight', 'medium');
 }
 
@@ -20,6 +21,8 @@ h1,
 h2,
 h3 {
     line-height: 1.2;
+
+    @include apply-utility('font', 'secondary')
 }
 
 h1 {
@@ -45,7 +48,12 @@ a {
 @import 'utilities/flow';
 @import 'utilities/splitter';
 @import 'utilities/auto-grid';
-@import 'utilities/sidebar';
+@import 'utilities/with-sidebar';
+@import 'utilities/visually-hidden';
 
 // Blocks
 @import 'blocks/nav';
+@import 'blocks/skip-link';
+@import 'blocks/site-head';
+@import 'blocks/site-foot';
+@import 'blocks/sidebar';
