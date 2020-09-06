@@ -61,6 +61,19 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+class Issue(models.Model):
+
+    number = models.IntegerField("Número", primary_key=True)
+    pub_date = models.DateField("Fecha de publicación")
+    current = models.BooleanField("Edición actual", default=False)
+
+    def __str__(self):
+        return f"Edición {self.number}"
+
+    class Meta:
+        ordering = ['-pub_date']
+        verbose_name = 'Edición'
+        verbose_name_plural = 'Ediciones'
 
 class Article(models.Model):
     title = models.CharField("Titulo", max_length=200, unique=True)
@@ -83,8 +96,15 @@ class Article(models.Model):
         verbose_name = "Categoría"
     )
     status = models.IntegerField("Estado", choices=STATUS, default = 1)
-    claps = models.IntegerField("Aplausos", default = 0)
     template_name = models.CharField('Layout del articulo', max_length=50 ,default='article.html')
+    issue = models.ForeignKey(
+        Issue, 
+        on_delete=models.CASCADE,
+        related_name="articles",
+        verbose_name="Edición",
+        null=True
+    )
+
 
     class Meta:
         ordering = ['-pub_date']
