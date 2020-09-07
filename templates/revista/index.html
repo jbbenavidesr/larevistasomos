@@ -17,8 +17,8 @@
                 <article class="flow">
                     <h2 class="">{{ object_list.0.title }}</h2>
                     <img src="{{ object_list.0.get_first_image.image.url }}" alt="" class="">
-                    <p class="">{{ object_list.0.author.name }}</p>
-                    <p class="">{{ object_list.0.author.school }}</p>
+                    <p class="text-300">{{ object_list.0.author.name }}</p>
+                    <p class="text-300">{{ object_list.0.author.school }}</p>
                     <p class="">
                         {{ object_list.0.description | markdown | safe }}
                     </p>
@@ -48,43 +48,53 @@
             </main>
 
             <aside class="[ sidebar ] [ flow ]">
-                <div class="" id="about-us">
+                <div class="flow align-center" id="about-us">
                     <a href="{% url 'revista:about_us' %}" class="">
                         <h2 class="">¿Quiénes SOMOS?</h2>
-                        <img src="{% static 'images/logo.jpg' %}" alt="" class="">
-                        <p class="">
-                            La voz de la juventud
-                        </p>
+                        <img src="{% static 'images/somos-logo.png' %}" alt="" class="">
                     </a>
                 </div>
 
                 {% if cuentos %}
-                <div class="flow">
-                    <h2 class=""><a href="{% url 'revista:category' 'cuentos' %}">Cuentos</a></h2>
-                    {% for cuento in cuentos %}
-                    <div class="">
-                        <a href="{% url 'revista:article_detail' cuento.category cuento.slug %}" class="widget-link">
-                            <h3 class="">{{ cuento.title }}</h3>
-                            <p class="">{{ cuento.author.name }}</p>
-                        </a>
+                <div class="[ flow ][ border-dashed ]">
+                    <h2 class="align-center"><a href="{% url 'revista:category' 'cuentos' %}">Cuentos</a></h2>
+                    <div class="[ flow flow--separations ]">
+                        {% for cuento in cuentos %}
+                        <div class="">
+                            <a href="{% url 'revista:article_detail' cuento.category cuento.slug %}" class="widget-link">
+                                <h3 class="">{{ cuento.title }}</h3>
+                                <p class="text-300">{{ cuento.author.name }}</p>
+                            </a>
+                        </div>
+                        {% endfor %}
                     </div>
-                    {% endfor %}
                 </div>
                 {% endif %}
 
                 {% if poemas %}
-                <div class="flow">
-                    <h2 class=""><a href="{% url 'revista:category' 'poemas' %}">Poemas</a></h2>
-                    {% for poema in poemas %}
-                    <div class="">
-                        <a href="{% url 'revista:article_detail' poema.category poema.slug %}" class="widget-link">
-                            <h3 class="">{{ poema.title }}</h3>
-                            <p class="">{{ poema.author.name }}</p>
-                        </a>
+                <div class="[ flow ] [ border-dashed ]">
+                    <h2 class="align-center"><a href="{% url 'revista:category' 'poemas' %}">Poemas</a></h2>
+                    <div class="[ flow flow--separations ]">
+                        {% for poema in poemas %}
+                        <div class="">
+                            <a href="{% url 'revista:article_detail' poema.category poema.slug %}" class="widget-link">
+                                <h3 class="">{{ poema.title }}</h3>
+                                <p class="text-300">{{ poema.author.name }}</p>
+                            </a>
+                        </div>
+                        {% endfor %}
                     </div>
-                    {% endfor %}
                 </div>
                 {% endif %}
+
+                <div class="[ issues ][ flow ] [ align-center ]">
+                    <h2 class="">Ediciones Anteriores</h2>
+                    <ul class="[ issues__list ]">
+                        <li><a href="">Edicion 1</a></li>
+                        <li><a href="">Edición 2</a></li>
+                        <li><a href="">Edición 3</a></li>
+                    </ul>
+                </div>
             </aside>
         </div>
     </div>

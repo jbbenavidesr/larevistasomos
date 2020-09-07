@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Author, Category, Article, Comment, Image
+from .models import Author, Category, Article, Comment, Image, Issue
 
 class CommentInline(admin.TabularInline):
     model = Comment
@@ -20,7 +20,7 @@ class ArticleAdmin(admin.ModelAdmin):
         }),
         ('Advanced options', {
             'classes': ('collapse',),
-            'fields': ('status', 'slug', 'claps','template_name',),
+            'fields': ('status', 'slug', 'template_name',),
         }),
     )   
 
@@ -56,7 +56,11 @@ class AuthorAdmin(admin.ModelAdmin):
     list_display = ('name',)
     prepopulated_fields = {'slug': ('name',)}
 
+class IssueAdmin(admin.ModelAdmin):
+    '''Admin View for Issue'''
+    list_display = ('number',)
+
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Author, AuthorAdmin)
 admin.site.register(Article, ArticleAdmin)
-
+admin.site.register(Issue, IssueAdmin)
