@@ -13,7 +13,7 @@ class ImageInline(admin.TabularInline):
 class ArticleAdmin(admin.ModelAdmin):
     fieldsets = (
         ('Información general', {
-            'fields': ('title', 'author', 'description', 'pub_date', 'category',),
+            'fields': ('title', 'author', 'description', 'pub_date', 'category', 'issue'),
         }),
         ('Contenido', {
             'fields': ('body', 'bib',),
