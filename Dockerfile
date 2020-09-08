@@ -1,6 +1,8 @@
 # Pull base image
 FROM python:3.8
 
+WORKDIR /code
+
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
@@ -13,22 +15,24 @@ RUN apt-get update -y && \
     rm -rf /var/lib/apt/lists/*
 
 # Set work directory
-WORKDIR /code
+WORKDIR /code/static_src/
 
-# Install front end dependencies
-COPY ./static_src/package.json ./static_src/package-lock.json ./
+# Install front-end dependencies
+COPY ./static_src/package.json ./static_src/package-lock.json /code/static_src/
 RUN npm install
 
-# Install dependencies
+# Install Python dependencies
 COPY Pipfile Pipfile.lock /code/
 RUN pip install pipenv && pipenv install --system
 
 # Compile static files
-COPY ./static_src/ ./
-RUN npm run build
+COPY ./static_src/ /code/static_src/
+RUN npm run production
+
+WORKDIR /code
 
 # Copy project
 COPY . /code/
 
 # Collect static files
-RUN python manage.py collectstatic --noinput 
+RUN python manage.py collectstatic --noinput --clear

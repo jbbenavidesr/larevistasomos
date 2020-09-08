@@ -3,13 +3,18 @@
     "version": "2.1.0",
     "description": "Frontend development for \"Revista SOMOS\"",
     "scripts": {
-        "start": "npx sass scss/global.scss ../static_compiled/css/global.css --watch",
-        "build": "npx sass scss/global.scss ../static_compiled/css/global.css --style=compressed"
+        "start": "npx gulp && npx gulp watch",
+        "production": "NODE_ENV=production npx gulp"
     },
     "author": "Juan Bernardo Benavides Rubio",
     "license": "ISC",
     "dependencies": {
+        "get-google-fonts": "^1.2.2",
         "gorko": "^0.2.3",
+        "gulp": "^4.0.2",
+        "gulp-clean-css": "^4.3.0",
+        "gulp-imagemin": "^7.1.0",
+        "gulp-sass": "^4.1.0",
         "sass": "^1.26.10"
     }
 }
