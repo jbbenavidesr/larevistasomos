@@ -26,7 +26,7 @@
                 </article>
                 
                 <ul class="auto-grid">
-                    {% for post in object_list|slice:"1:7" %}
+                    {% for post in object_list|slice:"1:6" %}
                         <li>
                             {% include 'partials/post-card.html' %}
                         </li>
@@ -37,7 +37,18 @@
                                 <h2>Publicidad</h2>
                             </div>
                         </li>
-                    {% for post in object_list|slice:"7:" %}
+                    {% for post in object_list|slice:"6:8" %}
+                        <li>
+                            {% include 'partials/post-card.html' %}
+                        </li>
+                    {% endfor %}
+                        <li>
+                            <div class="card radius"
+                                style="border:solid 2px black;">
+                                <h2>Publicidad</h2>
+                            </div>
+                        </li>
+                    {% for post in object_list|slice:"8:" %}
                         <li>
                             {% include 'partials/post-card.html' %}
                         </li>
@@ -91,12 +102,12 @@
                 {% endif %}
 
                 <div class="card radius"
-                    style="border:solid 2px black; height:150px;">
+                    style="border:solid 2px black; height:400px;">
                     <h2>Publicidad</h2>
                 </div>
 
                 <div class="card radius"
-                    style="border:solid 2px black; height:350px;">
+                    style="border:solid 2px black; height:650px;">
                     <h2>Cine</h2>
                 </div>
 
@@ -110,7 +121,7 @@
                 </div>
 
                 <div class="card radius"
-                    style="border:solid 2px black; height:300px;">
+                    style="border:solid 2px black; height:500px;">
                     <h2>Publicidad</h2>
                 </div>
             </aside>

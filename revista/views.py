@@ -27,6 +27,8 @@ class Index(generic.ListView):
             category__slug = 'cuentos'
         ).exclude(
             category__slug = 'poemas'
+        ).exclude(
+            category__slug = 'cine'
         ).order_by('-pub_date', '-update')
     
     def get_context_data(self, **kwargs):
@@ -34,19 +36,17 @@ class Index(generic.ListView):
         context = super().get_context_data(**kwargs)
         # Add in a QuerySet of all the books
         context['archive_post'] = Article.objects.filter(
-            pub_date__lte = datetime.date(2020, 5, 1)
+            issue__current=False
         ).order_by('-pub_date')[:3]
 
         context['cuentos'] = Article.objects.filter(
             category__slug = 'cuentos',
-            pub_date__gte = self.startdate,
-            pub_date__lte = self.enddate  
+            issue__current=True
         )
 
         context['poemas'] = Article.objects.filter(
             category__slug = 'poemas',
-            pub_date__gte = self.startdate,
-            pub_date__lte = self.enddate  
+            issue__current=True
         )
 
         context['gallery'] = Gallery.objects.order_by('?')[:10]
