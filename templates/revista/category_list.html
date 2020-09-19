@@ -14,30 +14,15 @@
         
         {% for post in object_list %}
             {% if post.description %}
-            <article class="article-recent">
-                <div class="article-recent-main">
-                    <h2 class="article-title">{{ post.title }}</h2>
-                    <p class="article-author">{{ post.author.name }}</p>
-                    <p class="article-school">{{ post.author.school }}</p>
-                    <p class="article-body">
-                        {{ post.description | markdown | safe }}
-                    </p>
-                    <a href="{% url 'revista:article_detail' post.category.slug post.slug %}" class="article-read-more">Leer más...</a>
-                </div>
-                <div class="article-recent-secondary">
-                    {% if post.images.all %}
-                    <img src="{{ post.get_first_image.image.url }}" alt="" class="article-image">
-                    {% endif %}
-                </div>
-            </article>
+            {% include 'partials/post-card.html' %}
             {% else %}
-            <article class="small-post poem-post">
-                <a href="{% url 'revista:article_detail' post.category.slug post.slug %}" class="widget-link">
-                    <h3 class="modern-life-post-title">{{ post.title }}</h3>
+            <article class="card">
+                    <h3 class="modern-life-post-title">
+                        <a href="{% url 'revista:article_detail' post.category.slug post.slug %}" class="card__link card__link--main">{{ post.title }}</a>
+                    </h3>
                     <img src="{{ post.author.photo.url }}" alt="" class="author-image">
-                    <p class="author-name"> {{ post.author.name }}</p>
-                    <p class="author-school">{{ post.author.school }}</p>
-                </a>
+                    <a href="{% url 'revista:author_list' post.author.slug %}" class="card__link card__link--secondary"><small class="box-block text-300">{{ post.author.name }}</small></a>
+                    <small class="box-block text-300">{{ post.author.school }}</small>
             </article>
             {% endif %}
         {% endfor %}
@@ -54,6 +39,10 @@
         </div>
         {% endif %}
     </main>
+    <div class="card radius"
+        style="border:solid 2px black; height:500px; max-width:50rem; margin:1rem auto;">
+        <h2>Pauta Grande</h2>
+    </div>
 
 {% endblock content %}
 

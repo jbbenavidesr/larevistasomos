@@ -64,7 +64,7 @@ class ArchiveIndex(generic.ListView):
         """
         
         return Article.objects.filter(
-            pub_date__lte = self.enddate   
+            issue__current=False
         ).exclude(
             category__slug = 'cuentos'
         ).exclude(
@@ -76,7 +76,7 @@ class ArchiveIndex(generic.ListView):
         context = super().get_context_data(**kwargs)
         # Add in a QuerySet of all the books
         context['archive_post'] = Article.objects.filter(
-            pub_date__lte = datetime.date(2020, 5, 1)
+            issue__current=True
         ).order_by('-pub_date')[:3]
 
         context['cuentos'] = Article.objects.filter(
@@ -100,8 +100,7 @@ class CategoryList(generic.ListView):
         enddate = timezone.now()
         return Article.objects.filter(
             category= self.category,
-            pub_date__gte = startdate,
-            pub_date__lte = enddate  
+            issue__current=True
         )
     
     def get_context_data(self, **kwargs):
