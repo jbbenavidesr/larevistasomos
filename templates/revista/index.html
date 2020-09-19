@@ -25,25 +25,28 @@
                     <a href="{% url 'revista:article_detail' object_list.0.category.slug object_list.0.slug %}" class="">Leer más...</a>
                 </article>
                 
-                <div class="auto-grid">
-                    {% for post in object_list|slice:"1:" %}
-                    <article class="flow">
-                        <div class="">
-                            <h2 class="">{{ post.title }}</h2>
-                            <p class="text-300">{{ post.author.name }}</p>
-                            <p class="text-300">{{ post.author.school }}</p>
-                            <p class="">
-                                {{ post.description | markdown | safe }}
-                            </p>
-                            <a href="{% url 'revista:article_detail' post.category.slug post.slug %}" class="text-300">Leer más...</a>
-                        </div>
-                        <div class="">
-                            {% if post.images.all %}
-                            <img src="{{ post.get_first_image.image.url }}" alt="" class="">
-                            {% endif %}
-                        </div>
-                    </article>
+                <ul class="auto-grid">
+                    {% for post in object_list|slice:"1:7" %}
+                        <li>
+                            {% include 'partials/post-card.html' %}
+                        </li>
                     {% endfor %}
+                        <li>
+                            <div class="card radius"
+                                style="border:solid 2px black;">
+                                <h2>Publicidad</h2>
+                            </div>
+                        </li>
+                    {% for post in object_list|slice:"7:" %}
+                        <li>
+                            {% include 'partials/post-card.html' %}
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                <div class="card radius"
+                    style="border:solid 2px black; height:300px;">
+                    <h2>Publicidad</h2>
                 </div>
             </main>
 
@@ -87,6 +90,11 @@
                 </div>
                 {% endif %}
 
+                <div class="card radius"
+                    style="border:solid 2px black; height:150px;">
+                    <h2>Publicidad</h2>
+                </div>
+
                 <div class="[ issues ][ flow ] [ align-center ]">
                     <h2 class="">Ediciones Anteriores</h2>
                     <ul class="[ issues__list ]">
@@ -94,6 +102,11 @@
                         <li><a href="">Edición 2</a></li>
                         <li><a href="">Edición 3</a></li>
                     </ul>
+                </div>
+
+                <div class="card radius"
+                    style="border:solid 2px black; height:300px;">
+                    <h2>Publicidad</h2>
                 </div>
             </aside>
         </div>

@@ -22,8 +22,7 @@ class Index(generic.ListView):
         """
         
         return Article.objects.filter(
-            pub_date__gte = self.startdate,
-            pub_date__lte = self.enddate   
+            issue__current=True  
         ).exclude(
             category__slug = 'cuentos'
         ).exclude(

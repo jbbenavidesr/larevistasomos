@@ -1,0 +1,18 @@
+{% load markdown_extras %}
+<article class="[ card ] [ flow radius ]">
+    {% if post.images.all %}
+        <div class="card__img">
+            <img src="{{ post.get_first_image.image.url }}" alt="">
+        </div>
+    {% endif %}
+    <div class="[ card__text ] [ flow ] ">
+        <h2>
+            <a href="{% url 'revista:article_detail' post.category.slug post.slug %}" class="card__link card__link--main">{{ post.title }}</a>
+        </h2>
+        <a href="{% url 'revista:author_list' post.author.slug %}" class="card__link card__link--secondary"><small class="box-block text-300">{{ post.author.name }}</small></a>
+        <small class="box-block text-300">{{ post.author.school }}</small>
+        <p class="">
+            {{ post.description | markdown | safe }}
+        </p> 
+    </div>
+</article>
