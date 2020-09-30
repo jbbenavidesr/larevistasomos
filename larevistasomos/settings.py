@@ -35,6 +35,9 @@ if ENVIRONMENT == 'production':
     CSRF_COOKIE_SECURE = True
     SECURE_REFERRER_POLICY = 'same-origin'
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    CACHE_MIDDLEWARE_ALIAS = 'default'
+    CACHE_MIDDLEWARE_SECONDS = 3600
+    CACHE_MIDDLEWARE_KEY_PREFIX = ''
 
 
 # Application definition
@@ -69,10 +72,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.cache.FetchFromCacheMiddleware',
 ]
-
-CACHE_MIDDLEWARE_ALIAS = 'default'
-CACHE_MIDDLEWARE_SECONDS = 3600
-CACHE_MIDDLEWARE_KEY_PREFIX = ''
 
 ROOT_URLCONF = 'larevistasomos.urls'
 

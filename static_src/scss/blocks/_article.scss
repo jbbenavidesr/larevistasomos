@@ -1,0 +1,71 @@
+.article {
+
+    &__pub-date {
+        font-size: get-size('300');
+        color: get-color('dark-glare');
+    }
+    
+    &__content {
+        @include apply-utility('leading', 'loose');
+
+        > * {
+            @include apply-utility('measure', 'long');
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        img {
+            width: 100%;
+            max-width: 30rem;
+            margin-left: auto;
+            margin-right: auto;
+
+            + a {
+                font-size: get-size('300');
+                color: get-color('light-shade');
+                width: max-content;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        blockquote {
+            border-inline-start: 1rem solid get-color('pink');
+            padding-inline-start: get-size('600');
+            padding-top: get-size('500');
+            padding-bottom: get-size('500');
+            font-style: italic;
+        }
+
+        h2 {
+            font-size: get-size('700');
+        }
+
+        h3 {
+            font-size: get-size('600');
+        }
+
+        ol,
+        ul {
+            padding-inline-start: get-size('800');
+        }
+
+        li + li {
+            margin-top: get-size('300');
+        }
+
+        // Add a greater flow space for heading elements so
+        // they appear more like article sections
+        h2,
+        h3 {
+            --flow-space: #{get-size('800')};
+        }
+
+        // Add tighter flow fot elements that follow a heading
+        h2 + *,
+        h3 + * {
+            --flow-space: #{get-size('300')};
+        }
+    }
+}

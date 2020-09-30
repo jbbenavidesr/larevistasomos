@@ -9,16 +9,19 @@ Autores | Revista SOMOS
 {% block content %}
 <main id="main-content"  class="auto-grid">
     {% for author in object_list %}
-        <article class="small-post poem-post">
-            <a href="{% url 'revista:author_list' author.slug %}" class="widget-link">
-                <h3 class="modern-life-post-title">{{ author.name }}</h3>
-                {% if author.photo %}<img src="{{ author.photo.url }}" alt="" class="author-image">{% endif %}
-                <p class="author-school">{{ author.school }}</p>
-                {% if article.author.ig_user %}
-                <p class="author-social"><i class="fab fa-instagram"></i>
-                        <a href="{{ author.ig_url }}" target="_blank">{{ article.author.ig_user }}</a></p>
+        <article class="[ author ] [ card ] [ radius ]">
+            <div class="card__img">
+                <img src="{{ author.photo.url }}" alt="" class="frame circle">
+            </div>
+            <div class="card__text flow">
+                <a href="{% url 'revista:author_list' author.slug %}" class="card__link card__link--main"><h2 class="box-block">{{ author.name }}</h2></a>
+                <small class="box-block text-300">{{ author.school }}</small>
+                {% if author.ig_user %}
+                    <a href="{{ author.ig_url }}" target="_blank" class="card__link card__link--secondary">
+                        <i class="fab fa-instagram"></i> {{ author.ig_user }}
+                    </a>
                 {% endif %}
-            </a>
+            </div>
         </article>
     {% endfor %}
 </main>

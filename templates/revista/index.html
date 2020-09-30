@@ -14,16 +14,24 @@
     <div class="with-sidebar">
         <div>
             <main id="main-content" class="flow">
-                <article class="flow">
-                    <h2 class="">{{ object_list.0.title }}</h2>
-                    <img src="{{ object_list.0.get_first_image.image.url }}" alt="" class="">
-                    <p class="text-300">{{ object_list.0.author.name }}</p>
-                    <p class="text-300">{{ object_list.0.author.school }}</p>
-                    <p class="">
-                        {{ object_list.0.description | markdown | safe }}
-                    </p>
-                    <a href="{% url 'revista:article_detail' object_list.0.category.slug object_list.0.slug %}" class="">Leer más...</a>
-                </article>
+                <div>
+                    <article class="[ card ] [ flow radius ] [ gap-bottom-500 ]">
+                        <div></div>
+                        <h2 class="align-center">
+                            <a href="{% url 'revista:article_detail' object_list.0.category.slug object_list.0.slug %}" class="card__link card__link--main">{{ object_list.0.title }}</a>
+                        </h2>
+                        <div class="card__img">
+                            <img src="{{ object_list.0.get_first_image.image.url }}" alt="">
+                        </div>
+                        <div class="[ card__text ] [ flow ] ">
+                            <a href="{% url 'revista:author_list' object_list.0.author.slug %}" class="card__link card__link--secondary"><small class="box-block text-300">{{ object_list.0.author.name }}</small></a>
+                            <small class="box-block text-300">{{ object_list.0.author.school }}</small>
+                            <p>
+                                {{ object_list.0.description | markdown | safe }}
+                            </p>
+                        </div>
+                    </article>
+                </div>
                 
                 <ul class="auto-grid">
                     {% for post in object_list|slice:"1:6" %}
@@ -62,11 +70,16 @@
             </main>
 
             <aside class="[ sidebar ] [ flow ]">
-                <div class="flow align-center" id="about-us">
-                    <a href="{% url 'revista:about_us' %}" class="">
-                        <h2 class="">¿Quiénes SOMOS?</h2>
-                        <img src="{% static 'images/somos-logo.png' %}" alt="" class="">
-                    </a>
+                <div>
+                    <div class="flow card radius" id="about-us">
+                        <div class="card__text">
+                            <h2 class="align-center">
+                                <a href="{% url 'revista:about_us' %}" class="card__link card__link--main">¿Quiénes SOMOS?</a>
+                            </h2>
+                            <img src="{% static 'images/somos-logo.png' %}" alt="" class="">
+                        </div>
+                        
+                    </div>
                 </div>
 
                 {% if cuentos %}

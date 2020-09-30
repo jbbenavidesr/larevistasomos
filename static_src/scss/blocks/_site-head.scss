@@ -5,4 +5,20 @@
     &__logo {
         max-width: 15rem;
     }
+
+    &__header {
+        flex-direction: column;
+
+        > * + * {
+            margin-top: 1em;
+        }
+        
+        @include media-query('sm'){
+            flex-direction: row;
+
+            > * + * {
+                margin-top: 0;
+            }
+        }
+    }
 }
