@@ -4,15 +4,20 @@
         font-size: get-size('300');
         color: get-color('dark-glare');
     }
+
+    h1 {
+        width: max-content;
+        max-width: 100%;
+    }
     
+    > * {
+        @include apply-utility('measure', 'long');
+        margin-right: auto;
+        margin-left: auto;
+    }
+
     &__content {
         @include apply-utility('leading', 'loose');
-
-        > * {
-            @include apply-utility('measure', 'long');
-            margin-right: auto;
-            margin-left: auto;
-        }
 
         img {
             width: 100%;
@@ -68,4 +73,5 @@
             --flow-space: #{get-size('300')};
         }
     }
+
 }
