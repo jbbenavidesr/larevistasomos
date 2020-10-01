@@ -73,18 +73,6 @@
                     {% endfor %}
                 </ul>
 
-                <div class="[ pauta ] [ flow card ] [ radius gap-bottom-300 ]">
-                    <div></div>
-                    <h2 class="align-center">
-                        Publicidad
-                    </h2>
-                    <div class="card__image">
-                        <a href="https://www.iventoscolombia.com" target="_blank" rel="noopener noreferrer" class="card__link card__link--main">
-                            <img src="{% static 'images/pautas/big.jpg' %}" alt="Publicidad - iVentos" class="pauta__image desktop">
-                            <img src="{% static 'images/pautas/big_mobile.jpg' %}" alt="Publicidad - iVentos" class="pauta__image mobile">
-                        </a>
-                    </div>
-                </div>
             </main>
 
             <aside class="[ sidebar ] [ flow ]">
@@ -132,9 +120,14 @@
                 </div>
                 {% endif %}
 
-                <div class="card radius"
-                    style="border:solid 2px black; height:400px;">
-                    <h2>Pauta 4</h2>
+                <div class="[ pauta ] [ flow card ] [ radius ]">
+                    <div></div>
+                    <h2 class="align-center">
+                        Publicidad
+                    </h2>
+                    <a href="https://instagram.com/proyectoprea/" target="_blank" rel="noopener noreferrer" class="card__link card__link--main">
+                        <img src="{% static 'images/pautas/4.png' %}" alt="Publicidad - PREA" class="pauta__image">
+                    </a>
                 </div>
 
                 <div class="card radius"
@@ -161,6 +154,19 @@
                     </a>
                 </div>
             </aside>
+        </div>
+    </div>
+
+    <div class="[ pauta ] [ flow card ] [ radius gap-bottom-300 ]">
+        <div></div>
+        <h2 class="align-center">
+            Publicidad
+        </h2>
+        <div class="card__image">
+            <a href="https://www.iventoscolombia.com" target="_blank" rel="noopener noreferrer" class="card__link card__link--main">
+                <img src="{% static 'images/pautas/big.jpg' %}" alt="Publicidad - iVentos" class="pauta__image desktop">
+                <img src="{% static 'images/pautas/big_mobile.jpg' %}" alt="Publicidad - iVentos" class="pauta__image mobile">
+            </a>
         </div>
     </div>
 {% endblock content %}
