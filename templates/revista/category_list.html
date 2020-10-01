@@ -21,9 +21,13 @@
                     <h2 class="align-center">
                         <a href="{% url 'revista:article_detail' post.category.slug post.slug %}" class="card__link card__link--main">{{ post.title }}</a>
                     </h2>
-                    <div class="card__img">
-                        <img src="{{ post.author.photo.url }}" alt="" class="author-image">
-                    </div>
+                    
+                    {% if post.author.photo %}
+                        <div class="card__img">
+                            <img src="{{ post.author.photo.url }}" alt="" class="author-image">
+                        </div>
+                    {% endif %}
+                                           
                     <div class="[ card__text ] [ flow ] ">
                         <a href="{% url 'revista:author_list' post.author.slug %}" class="card__link card__link--secondary"><small class="box-block text-300">{{ post.author.name }}</small></a>
                         <small class="box-block text-300">{{ post.author.school }}</small>

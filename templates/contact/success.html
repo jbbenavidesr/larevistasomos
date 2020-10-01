@@ -1,0 +1,20 @@
+{% extends '_base.html' %}
+
+{% block title %}
+Mensaje enviado | Revista SOMOS
+{% endblock title %}
+
+{% block content %}
+<div class="wrapper card radius">
+    <div class="card__text wrapper">
+        <h1>¡Gracias por comunicarte con nosotros!</h1>
+        <p>Tu mensaje ha sido enviado. Espera próximamente nuestra respuesta</p>
+
+        <a href="{% url 'revista:home' %}" class="card__link card__link--main">
+            Vuelve al inicio para seguir disfrutando de nuestro contenido
+        </a>
+        
+        
+    </div>
+</div>
+{% endblock content %}

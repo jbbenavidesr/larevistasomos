@@ -1,0 +1,60 @@
+{% extends '_base.html' %}
+
+{% load static %}
+{% load obfuscate_email %}
+
+{% block content %}
+<div class="flow">
+    <h2>¿Tienes algo por contar? ¿Algún comentario?</h2>
+    <p>Envíanos tu poema, cuento, foto, investigación, artículo, comentario, 
+        reclamo y/o sugerencia a nuestro correo o cuentanos lo que quieras 
+        llenando el siguiente formulario:
+    </p>
+    <div class="contacto-link">
+        {% obfuscate_email revistasomos@glm.edu.co %}
+    </div>
+    <div class="form">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="form-actions">
+            <button type="submit" class="submit-btn">Enviar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="wrapper gap-top-600 flow">
+    <h2>O escríbele directamente a algún miembro del equipo:</h2>
+    <div class="auto-grid">
+        <div class="card radius">
+              <img src="{% static 'images/santiagoorozco.jpg' %}" alt="" class="author-image">
+              <div class="card__text">
+                  <p class="author-name">Santiago Orozco Uribe</p>
+                  {% obfuscate_email santiagoorozco@glm.edu.co %}
+              </div>
+        </div>
+        <div class="card radius">
+            <img src="{% static 'images/manuelgomez.jpg' %}" alt="" class="author-image">
+            <div class="card__text">
+                <p class="author-name">Manuel Gómez Balderrama</p>
+                {% obfuscate_email manuelgomez@glm.edu.co %}
+            </div>
+        </div>
+        <div class="card radius">
+            <img src="{% static 'images/samuelescobar.jpg' %}" alt="" class="author-image">
+            <div class="card__text">
+                <p class="author-name">Samuel Escobar Rubio</p>
+                {% obfuscate_email samuelescobar@glm.edu.co %}
+            </div>
+        </div>
+        <div class="card radius">
+            <img src="{% static 'images/tomasbuitrago.jpg' %}" alt="" class="author-image">
+            <div class="card__text">
+                <p class="author-name">Tomás Buitrago Barrera</p>
+                {% obfuscate_email tomasbuitrago@glm.edu.co %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
