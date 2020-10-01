@@ -1,3 +1,22 @@
 .site-foot {
     --wrap-width: 90rem;
+    text-align: center; 
+
+    &__content {
+        grid-template-columns: repeat(3,minmax(var(--auto-grid-min-size,16rem),1fr));
+        
+        > * {
+            display:flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+
+            padding: get-size('500');
+        }
+
+        ul {
+            text-align: left;
+        }
+    }
+
 }

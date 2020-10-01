@@ -1,14 +1,20 @@
 {% load obfuscate_email %}
 
-<footer class="[ site-foot ] [ bg-light gap-top-700 ]">
-    <div class="wrapper">
+<footer class="[ site-foot ] [ bg-light-glare gap-top-700 ]">
+    <div class="site-foot__content wrapper auto-grid">
         <div class="">
-            <h3>¿Tienes algo por contar?</h3>
-            <p>
-                Envíanos tu poema, cuento, foto, investigación y/o
-                artículo a nuestro correo. <span></span>
-                {% obfuscate_email revistasomos@glm.edu.co %}
-            </p>
+            <div class="card radius">
+                <div class="card__text">
+                    <h3>
+                        <a href="{% url 'contact:contact' %}" class="card__link card__link--main">¿Tienes algo por contar?</a>  
+                    </h3>
+                    <p>
+                        Ponte en contacto para mandar tu poema, cuento, foto, 
+                        investigación, artículo o cualquier otra cosa que quieras
+                        publicar.
+                    </p>
+                </div>
+            </div>
         </div>
         {% block footer_nav %}
         <nav class="">
@@ -53,19 +59,22 @@
         </nav>
         {% endblock %}
         <div class="">
-            <h3 class="">¡Síguenos!</h3>
-            <a
-                href="http://www.instagram.com/larevista.somos"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="bg-dark-glare"
-            >
-                <i class="fab fa-instagram"> larevista.somos</i></a
-            >
+            <div class="card radius">
+                <div class="card__text">
+                    <h3>¡Síguenos!</h3>
+                    <a
+                        href="http://www.instagram.com/larevista.somos"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="card__link card__link--main"
+                    >
+                        <i class="fab fa-instagram"> larevista.somos</i></a>
+                </div>
+            </div>
         </div>
     </div>
 
-    <small class="align-center">
+    <small class="wrapper align-center">
         &copy; Copyright {{ current_year }}, Revista SOMOS.
     </small>
 </footer>

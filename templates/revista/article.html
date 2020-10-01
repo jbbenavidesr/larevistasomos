@@ -16,13 +16,13 @@
     <div class="with-sidebar">
         <div>
             <article class="article">
-                <h2 class="article__title">{{ article.title }}</h2>
+                <h1 class="article__title">{{ article.title }}</h1>
                 {% if not article.author.school %}
                 <p class="article__author text-300">Por: {{ article.author }}</p>
                 {% endif %}
-                <time class="article__pub-date text-300">
+                <p class="article__pub-date text-300">
                     {{ article.pub_date }}
-                </time>
+                </p>
                 <div class ="[ article__content ] [ flow ]">
                     {{ article.body_html | safe }}
                 </div>
