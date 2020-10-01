@@ -1,0 +1,24 @@
+.pauta {
+
+    &__image{
+        
+        &.mobile {
+            display: block;
+        }
+
+        &.desktop {
+            display: none;
+        }
+    
+        @include media-query('sm'){
+            &.mobile {
+                display: none;
+            }
+
+            &.desktop {
+                display: block;
+            }
+        
+        }
+    }
+}
