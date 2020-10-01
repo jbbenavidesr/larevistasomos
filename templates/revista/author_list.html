@@ -18,18 +18,19 @@
             <main class="auto-grid">
                 
                 {% for post in object_list %}
-                    <article class="small-post poem-post">
-                        <a href="{% url 'revista:article_detail' post.category.slug post.slug %}" class="widget-link">
-                            <h3 class="modern-life-post-title">{{ post.title }}</h3>
+                    <article class="card radius">
+                            <div></div>
+                            <h2 class="align-center">
+                                <a href="{% url 'revista:article_detail' post.category.slug post.slug %}" class="card__link card__link--main">{{ post.title }}</a>
+                            </h2>
                             {% if post.images.all %}
                             <img src="{{ post.get_first_image.image.url }}" alt="" class="author-image">
                             {% elif post.author.photo %}
                             <img src="{{ post.author.photo.url }}" alt="" class="author-image">
-                            {% endif %}
-                            
-                        </a>
+                            {% endif %}                      
                     </article>
                 {% endfor %}
+                <div></div>
                 <div class="gallery-grid">
                     {% for photo in author.fotos.all %}
                     <div class="gallery-grid__item">
@@ -41,22 +42,24 @@
                 </div>
             </main>
 
-            <aside role="author" class="author">
-                
-                <div class="container container-author">
-                    {% if author.photo %}
-                    <img src="{{ author.photo.url }}" alt="" class="author-image">
-                    {% endif %}
-                    <p class="author-name">{{ author.name }}</p>
-                    <p class="author-school">{{ author.school }}</p>
-                    {% if author.ig_user %}
-                    <p class="author-social"><i class="fab fa-instagram"></i>
-                            <a href="{{ author.ig_url }}" target="_blank">{{ author.ig_user }}</a></p>
-                    {% endif %}
+            <aside role="author" class="">
+                <div>
+                    <div class="[ author ] [ card ] [ radius ]">
+                        <img src="{{ author.photo.url }}" alt="" class="frame circle">
+                        <div class="card__text flow">
+                            <a href="{% url 'revista:author_list' author.slug %}" class="card__link card__link--main"><small class="box-block text-300">{{ author.name }}</small></a>
+                            <small class="box-block text-300">{{ author.school }}</small>
+                            {% if author.ig_user %}
+                                <a href="{{ author.ig_url }}" target="_blank" class="card__link card__link--secondary">
+                                    <i class="fab fa-instagram"></i> {{ author.ig_user }}
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
                 </div>
-                <div class="clap-btn-sidebar">
-                    <applause-button style="width: 58px; height: 58px;"/>   
-                </div> 
+                <div class="gap-top-300">
+                    <applause-button style="width: 4rem; height: 4rem;" class="wrapper"/>   
+                </div>   
             </aside>
         </div>
     </div>
