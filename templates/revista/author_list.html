@@ -15,37 +15,41 @@
 {% block content %}
     <div class="with-sidebar">
         <div>
-            <main class="auto-grid">
-                
-                {% for post in object_list %}
-                    <article class="card radius">
-                            <div></div>
-                            <h2 class="align-center">
-                                <a href="{% url 'revista:article_detail' post.category.slug post.slug %}" class="card__link card__link--main">{{ post.title }}</a>
-                            </h2>
-                            {% if post.images.all %}
-                            <img src="{{ post.get_first_image.image.url }}" alt="" class="author-image">
-                            {% elif post.author.photo %}
-                            <img src="{{ post.author.photo.url }}" alt="" class="author-image">
-                            {% endif %}                      
-                    </article>
-                {% endfor %}
-                <div></div>
-                <div class="gallery-grid">
-                    {% for photo in author.fotos.all %}
-                    <div class="gallery-grid__item">
-                        <a href="{% url 'gallery:image' photo.slug %}" class="gallery-link">
-                            <img class='gallery-grid__img' src='{{ photo.image.url }}' alt=''>
-                        </a>
-                    </div>
+            <main>
+                <ul class="auto-grid">
+                    {% for post in object_list %}
+                        <li>
+                            <article class="card radius">
+                                    <div></div>
+                                    <h2 class="align-center">
+                                        <a href="{% url 'revista:article_detail' post.category.slug post.slug %}" class="card__link card__link--main">{{ post.title }}</a>
+                                    </h2>
+                                    {% if post.images.all %}
+                                    <img src="{{ post.get_first_image.image.url }}" alt="" class="author-image">
+                                    {% elif post.author.photo %}
+                                    <img src="{{ post.author.photo.url }}" alt="" class="author-image">
+                                    {% endif %}                      
+                            </article>
+                        </li>
                     {% endfor %}
-                </div>
+                    {% for photo in author.fotos.all %}
+                    <li>
+                        <div class="gallery-grid__item">
+                            <a href="{% url 'gallery:image' photo.slug %}" class="gallery-link">
+                                <img class='gallery-grid__img' src='{{ photo.image.url }}' alt=''>
+                            </a>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
             </main>
 
             <aside role="author" class="">
                 <div>
                     <div class="[ author ] [ card ] [ radius ]">
-                        <img src="{{ author.photo.url }}" alt="" class="frame circle">
+                        {% if author.photo %}
+                            <img src="{{ author.photo.url }}" alt="" class="frame circle">
+                        {% endif %}
                         <div class="card__text flow">
                             <a href="{% url 'revista:author_list' author.slug %}" class="card__link card__link--main"><small class="box-block text-300">{{ author.name }}</small></a>
                             <small class="box-block text-300">{{ author.school }}</small>

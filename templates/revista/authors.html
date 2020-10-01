@@ -11,7 +11,9 @@ Autores | Revista SOMOS
     {% for author in object_list %}
         <article class="[ author ] [ card ] [ radius ]">
             <div class="card__img">
-                <img src="{{ author.photo.url }}" alt="" class="frame circle">
+                {% if author.photo %}
+                    <img src="{{ author.photo.url }}" alt="" class="frame circle">
+                {% endif %}
             </div>
             <div class="card__text flow">
                 <a href="{% url 'revista:author_list' author.slug %}" class="card__link card__link--main"><h2 class="box-block">{{ author.name }}</h2></a>
