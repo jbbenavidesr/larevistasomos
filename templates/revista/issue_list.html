@@ -1,0 +1,43 @@
+{% extends '_base.html' %}
+
+{% load static %}
+{% load markdown_extras %}
+
+{% block title %}
+Ediciónes | Revista SOMOS
+{% endblock title %}
+
+{% block content %}
+
+    <main id="main-content" class="auto-grid">
+        {% if object_list %}
+        
+            {% for edition in object_list %}
+                <article class="card radius align-center">
+                        <div class="[ card__text ] [ flow ] ">
+                            <h2 class="">
+                                {% if edition.current %}
+                                    <a href="{% url 'revista:home' %}" class="card__link card__link--main">Edición actual</a>
+                                {% else %}
+                                    <a href="{% url 'revista:archive_issue' edition.number %}" class="card__link card__link--main">Edición {{ edition.number }}</a>
+                                {% endif %} 
+                            </h2>
+                            <small class="box-block text-300">{{ edition.pub_date }}</small>
+                        </div>
+                </article>
+            {% endfor %}
+        {% else %}
+        <div class="container contacto-main error">
+            <div>
+                <h2 class="error-title">Ups, no hay articulos en esta sección</h2>
+                <p>Lamentablemente, no hay ningún artículo en esta sección.
+                </p>
+                <div class="contacto-link">
+                    <a href="{% url 'revista:home' %}">¡Vuelve al inicio!</a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </main>
+
+{% endblock content %}

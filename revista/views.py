@@ -58,41 +58,54 @@ class Index(generic.ListView):
         
         return context
 
-class ArchiveIndex(generic.ListView):
-    template_name = 'revista/index.html'
-    enddate = datetime.date(2020, 5, 1)
 
+class IssueListView(generic.ListView):
+    model = Issue
+    template_name = "revista/issue_list.html"
+
+
+class ArchiveIndex(generic.ListView):
+    template_name = 'revista/index-no-pub.html'
+    
     def get_queryset(self):
         """
         Return the articles in this edition (not including those set to be
         published in the future ). 
         """
-        
+
         return Article.objects.filter(
-            issue__current=False
+            issue__number=self.kwargs['pk']
         ).exclude(
-            category__slug = 'cuentos'
+            category__slug='cuentos'
         ).exclude(
-            category__slug = 'poemas'
-        ).order_by('-pub_date')
+            category__slug='poemas'
+        ).exclude(
+            category__slug='cine'
+        ).order_by('-pub_date', '-update')
     
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
         # Add in a QuerySet of all the books
-        context['archive_post'] = Article.objects.filter(
-            issue__current=True
-        ).order_by('-pub_date')[:3]
+        context['editions'] = Issue.objects.exclude(
+            number=self.kwargs['pk']
+        ).order_by('-pub_date')
 
         context['cuentos'] = Article.objects.filter(
             category__slug = 'cuentos',
-            pub_date__lte = self.enddate  
+            issue__number=self.kwargs['pk']
         )
 
         context['poemas'] = Article.objects.filter(
             category__slug = 'poemas',
-            pub_date__lte = self.enddate  
+            issue__number=self.kwargs['pk']
         )
+
+        context['cine'] = Article.objects.filter(
+            category__slug='cine',
+            issue__number=self.kwargs['pk']
+        )
+
         return context
 
 

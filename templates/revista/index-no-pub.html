@@ -3,12 +3,6 @@
 {% load static %}
 {% load markdown_extras %}
 
-{% block before %}
-{% if gallery %}
-{% include 'gallery/carrousel.html' %}
-{% endif %}
-{% endblock before %}
-
 
 {% block content %}
     <div class="with-sidebar">
@@ -34,39 +28,7 @@
                 </div>
                 
                 <ul class="auto-grid">
-                    {% for post in object_list|slice:"1:6" %}
-                        <li>
-                            {% include 'partials/post-card.html' %}
-                        </li>
-                    {% endfor %}
-                        <li>
-                            <div class="[ pauta ] [ flow card ] [ radius ]">
-                                <div></div>
-                                <h2 class="align-center">
-                                    Publicidad
-                                </h2>
-                                <a href="https://www.instagram.com/cataniacookies/" target="_blank" rel="noopener noreferrer" class="card__link card__link--main">
-                                    <img src="{% static 'images/pautas/1.png' %}" alt="Publicidad - Catania Cookies" class="pauta__image">
-                                </a>
-                            </div>
-                        </li>
-                    {% for post in object_list|slice:"6:8" %}
-                        <li>
-                            {% include 'partials/post-card.html' %}
-                        </li>
-                    {% endfor %}
-                        <li>
-                            <div class="[ pauta ] [ flow card ] [ radius ]">
-                                <div></div>
-                                <h2 class="align-center">
-                                    Publicidad
-                                </h2>
-                                <a href="https://www.instagram.com/trendy.paws/" target="_blank" rel="noopener noreferrer" class="card__link card__link--main">
-                                    <img src="{% static 'images/pautas/2.jpg' %}" alt="Publicidad - Trendy Paws" class="pauta__image">
-                                </a>
-                            </div>
-                        </li>
-                    {% for post in object_list|slice:"8:" %}
+                    {% for post in object_list|slice:"1:" %}
                         <li>
                             {% include 'partials/post-card.html' %}
                         </li>
@@ -127,16 +89,6 @@
                 </div>
                 {% endif %}
 
-                <div class="[ pauta ] [ flow card ] [ radius ]">
-                    <div></div>
-                    <h2 class="align-center">
-                        Publicidad
-                    </h2>
-                    <a href="https://instagram.com/proyectoprea/" target="_blank" rel="noopener noreferrer" class="card__link card__link--main">
-                        <img src="{% static 'images/pautas/4.png' %}" alt="Publicidad - PREA" class="pauta__image">
-                    </a>
-                </div>
-
                 {% if cine %}
                 <div class="[ flow ] [ border-dashed ]">
                     <h2 class="align-center"><a href="{% url 'revista:category' 'cine' %}">Cine</a></h2>
@@ -158,7 +110,7 @@
                 {% endif %}
 
                 <div class="[ issues ][ flow ] [ align-center ]">
-                    <h2 class="align-center"><a href="{% url 'revista:archive_index' %}">Ediciones Anteriores</a></h2>
+                    <h2 class="align-center"><a href="{% url 'revista:archive_index' %}">Ediciones</a></h2>
                     <ul class="[ issues__list ]">
                         
                         {% for edition in editions %}
@@ -166,7 +118,11 @@
                                 <div class="card radius">
                                     <div class="card__text">
                                         <h3>
+                                        {% if edition.current %}
+                                            <a href="{% url 'revista:home' %}" class="card__link card__link--main">Edición actual</a>
+                                        {% else %}
                                             <a href="{% url 'revista:archive_issue' edition.number %}" class="card__link card__link--main">Edición {{ edition.number }}</a>
+                                        {% endif %} 
                                         </h3>
                                     </div>
                                 </div>
@@ -175,30 +131,7 @@
                             
                     </ul>
                 </div>
-
-                <div class="[ pauta ] [ flow card ] [ radius ]">
-                    <div></div>
-                    <h2 class="align-center">
-                        Publicidad
-                    </h2>
-                    <a href="https://instagram.com/smores_bogota/" target="_blank" rel="noopener noreferrer" class="card__link card__link--main">
-                        <img src="{% static 'images/pautas/5.jpg' %}" alt="Publicidad - smores bogotá" class="pauta__image">
-                    </a>
-                </div>
             </aside>
-        </div>
-    </div>
-
-    <div class="[ pauta ] [ flow card ] [ radius gap-bottom-300 ]">
-        <div></div>
-        <h2 class="align-center">
-            Publicidad
-        </h2>
-        <div class="card__image">
-            <a href="https://www.iventoscolombia.com" target="_blank" rel="noopener noreferrer" class="card__link card__link--main">
-                <img src="{% static 'images/pautas/big.jpg' %}" alt="Publicidad - iVentos" class="pauta__image desktop">
-                <img src="{% static 'images/pautas/big_mobile.jpg' %}" alt="Publicidad - iVentos" class="pauta__image mobile">
-            </a>
         </div>
     </div>
 {% endblock content %}
