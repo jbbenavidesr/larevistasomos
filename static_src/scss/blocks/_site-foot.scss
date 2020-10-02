@@ -1,11 +1,26 @@
 .site-foot {
     --wrap-width: 90rem;
-    text-align: center; 
+    text-align: center;
+    padding: get-size('400'); 
 
     &__content {
-        grid-template-columns: repeat(3,minmax(var(--auto-grid-min-size,16rem),1fr));
         
+        flex-direction: column;
+
+        > * + * {
+            margin-top: 1em;
+        }
+        
+        @include media-query('sm'){
+            flex-direction: row;
+
+            > * + * {
+                margin-top: 0;
+            }
+        }
+
         > * {
+            max-width: 20rem;
             display:flex;
             flex-direction: column;
             justify-content: space-evenly;
