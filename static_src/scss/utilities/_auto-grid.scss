@@ -4,5 +4,5 @@
         auto-fill,
         minmax(var(--auto-grid-min-size, 16rem), 1fr)
     );
-    grid-gap: var(--auto-grid-gap, get-size('500'));
+    grid-gap: var(--auto-grid-gap, get-size('600'));
 }
