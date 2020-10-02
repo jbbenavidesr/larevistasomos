@@ -1,3 +1,7 @@
 .sidebar {
-    --flow-space: 2em;
+    --flow-space: 2rem;
+
+    h3 {
+        font-size: get-size('500');
+    }
 }
