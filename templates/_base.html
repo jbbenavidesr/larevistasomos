@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
+        {% if not debug %}
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script
             async
@@ -17,6 +18,20 @@
 
             gtag('config', 'UA-163601809-1');
         </script>
+
+        <!-- Hotjar Tracking Code for www.larevistasomos.com -->
+        <script>
+            (function(h,o,t,j,a,r){
+                h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+                h._hjSettings={hjid:2022089,hjsv:6};
+                a=o.getElementsByTagName('head')[0];
+                r=o.createElement('script');r.async=1;
+                r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+                a.appendChild(r);
+            })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+        </script>
+        {% endif %}
+            
 
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -38,7 +53,10 @@
         {% block head_tags %}{% endblock %}
     </head>
     <body>
+        
+        
         {% include 'partials/site-head.html' %}
+        
 
         {% block before %} {% endblock before %}
 

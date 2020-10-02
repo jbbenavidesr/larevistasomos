@@ -20,6 +20,11 @@ SECRET_KEY = env.str('DJANGO_SECRET_KEY', default=get_random_secret_key())
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("DJANGO_DEBUG", default=False)
 
+if DEBUG:
+    # `debug` is only True in templates if the vistor IP is in INTERNAL_IPS.
+    INTERNAL_IPS = type(str('c'), (), {'__contains__': lambda *a: True})()
+
+
 ALLOWED_HOSTS = ['larevistasomos.herokuapp.com',
                  '.larevistasomos.com', 'localhost', '127.0.0.1']
 
