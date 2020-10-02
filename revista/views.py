@@ -5,7 +5,7 @@ from django.views import generic
 from django.http import HttpResponse
 from django.utils import timezone
 
-from .models import Article, Comment, Category, Author
+from .models import Article, Comment, Category, Author, Issue
 from .forms import CommentForm
 from gallery.models import Gallery
 
@@ -35,9 +35,9 @@ class Index(generic.ListView):
         # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
         # Add in a QuerySet of all the books
-        context['archive_post'] = Article.objects.filter(
-            issue__current=False
-        ).order_by('-pub_date')[:3]
+        context['editions'] = Issue.objects.filter(
+            current=False
+        ).order_by('-pub_date')
 
         context['cuentos'] = Article.objects.filter(
             category__slug = 'cuentos',
@@ -46,6 +46,11 @@ class Index(generic.ListView):
 
         context['poemas'] = Article.objects.filter(
             category__slug = 'poemas',
+            issue__current=True
+        )
+
+        context['cine'] = Article.objects.filter(
+            category__slug='cine',
             issue__current=True
         )
 

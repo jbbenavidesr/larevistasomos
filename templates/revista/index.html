@@ -81,42 +81,49 @@
                         <div class="card__text">
                             <h2 class="align-center">
                                 <a href="{% url 'revista:about_us' %}" class="card__link card__link--main">¿Quiénes SOMOS?</a>
-                            </h2>
+                            </h2> 
                             <img src="{% static 'images/somos-logo.png' %}" alt="" class="">
                         </div>
-                        
                     </div>
                 </div>
 
                 {% if cuentos %}
                 <div class="[ flow ][ border-dashed ]">
                     <h2 class="align-center"><a href="{% url 'revista:category' 'cuentos' %}">Cuentos</a></h2>
-                    <div class="[ flow flow--separations ]">
-                        {% for cuento in cuentos %}
-                        <div class="">
-                            <a href="{% url 'revista:article_detail' cuento.category cuento.slug %}" class="widget-link">
-                                <h3 class="">{{ cuento.title }}</h3>
-                                <p class="text-300">{{ cuento.author.name }}</p>
-                            </a>
-                        </div>
+                    <ul class="[ flow flow--separations ]">
+                        {% for post in cuentos %}
+                        <li>
+                            <div class="card radius">
+                                <div class="card__text">
+                                    <h3>
+                                        <a href="{% url 'revista:article_detail' post.category post.slug %}" class="card__link card__link--main">{{ post.title }}</a>
+                                    </h3>
+                                    <a href="{% url 'revista:author_list' post.author.slug %}" class="card__link card__link--secondary"><small class="box-block text-300">{{ post.author.name }}</small></a>
+                                </div>
+                            </div>
+                        </li>
                         {% endfor %}
-                    </div>
+                    </ul>
                 </div>
                 {% endif %}
 
                 {% if poemas %}
                 <div class="[ flow ] [ border-dashed ]">
                     <h2 class="align-center"><a href="{% url 'revista:category' 'poemas' %}">Poemas</a></h2>
-                    <div class="[ flow flow--separations ]">
-                        {% for poema in poemas %}
-                        <div class="">
-                            <a href="{% url 'revista:article_detail' poema.category poema.slug %}" class="widget-link">
-                                <h3 class="">{{ poema.title }}</h3>
-                                <p class="text-300">{{ poema.author.name }}</p>
-                            </a>
-                        </div>
+                    <ul class="[ flow flow--separations ]">
+                        {% for post in poemas %}
+                        <li>
+                            <div class="card radius">
+                                <div class="card__text">
+                                    <h3>
+                                        <a href="{% url 'revista:article_detail' post.category post.slug %}" class="card__link card__link--main">{{ post.title }}</a>
+                                    </h3>
+                                    <a href="{% url 'revista:author_list' post.author.slug %}" class="card__link card__link--secondary"><small class="box-block text-300">{{ post.author.name }}</small></a>
+                                </div>
+                            </div>
+                        </li>
                         {% endfor %}
-                    </div>
+                    </ul>
                 </div>
                 {% endif %}
 
@@ -130,17 +137,34 @@
                     </a>
                 </div>
 
-                <div class="card radius"
-                    style="border:solid 2px black; height:650px;">
-                    <h2>Cine</h2>
+                {% if cine %}
+                <div class="[ flow ] [ border-dashed ]">
+                    <h2 class="align-center"><a href="{% url 'revista:category' 'cine' %}">Cine</a></h2>
+                    <ul class="[ flow flow--separations ]">
+                        {% for post in cine %}
+                        <li>
+                            <div class="card radius">
+                                <div class="card__text">
+                                    <h3>
+                                        <a href="{% url 'revista:article_detail' post.category post.slug %}" class="card__link card__link--main">{{ post.title }}</a>
+                                    </h3>
+                                    <a href="{% url 'revista:author_list' post.author.slug %}" class="card__link card__link--secondary"><small class="box-block text-300">{{ post.author.name }}</small></a>
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
                 </div>
+                {% endif %}
 
                 <div class="[ issues ][ flow ] [ align-center ]">
                     <h2 class="">Ediciones Anteriores</h2>
                     <ul class="[ issues__list ]">
-                        <li><a href="">Edicion 1</a></li>
-                        <li><a href="">Edición 2</a></li>
-                        <li><a href="">Edición 3</a></li>
+                        
+                        {% for edition in editions %}
+                            <li>Edición {{ edition.number }}</li>
+                        {% endfor %}
+                            
                     </ul>
                 </div>
 
