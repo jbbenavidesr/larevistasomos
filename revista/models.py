@@ -107,7 +107,7 @@ class Article(models.Model):
 
 
     class Meta:
-        ordering = ['-pub_date']
+        ordering = ['-pub_date', '-update']
         verbose_name = 'Artículo'
         verbose_name_plural = 'Artículos'
 
