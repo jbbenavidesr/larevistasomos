@@ -5,14 +5,15 @@ ERROR 404 | Revista SOMOS
 {% endblock title %}
 
 {% block content %}
-<div class="container contacto-main error">
-    <div>
-        <h2 class="error-title">Error 404</h2>
-        <p>Ups, parece que te has equivocado...
-        </p>
-        <div class="contacto-link">
-            <a href="{% url 'revista:home' %}">Vuelve al inicio</a>
-        </div>
+<div class="wrapper card radius">
+    <div class="card__text wrapper">
+        <h1>Error 404</h1>
+        <p>Ups, parece que te has equivocado...</p>
+
+        <a href="{% url 'revista:home' %}" class="card__link card__link--main">
+            Vuelve al inicio para seguir disfrutando de nuestro contenido
+        </a>
+        
         
     </div>
 </div>
