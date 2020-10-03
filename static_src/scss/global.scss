@@ -43,6 +43,10 @@ a {
     outline-offset: 0.25rem;
 }
 
+iframe {
+    max-width: 100%;
+}
+
 // Utilities
 @import 'utilities/wrapper';
 @import 'utilities/flow';
