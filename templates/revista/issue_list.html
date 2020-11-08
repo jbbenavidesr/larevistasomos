@@ -39,5 +39,25 @@ Ediciónes | Revista SOMOS
         </div>
         {% endif %}
     </main>
+    
+    {% if user.is_authenticated and draft_list %}
+    <div>
+        <h2>Borradores</h2>
+        <div class="auto-grid">
+            {% for edition in draft_list %}
+                <article class="card radius align-center">
+                        <div class="[ card__text ] [ flow ] ">
+                            <h3 class="">
+                                <a href="{% url 'revista:draft' edition.number %}" class="card__link card__link--main">Edición {{ edition.number }}</a>
+                            </h3>
+                            <small class="box-block text-300">{{ edition.pub_date }}</small>
+                        </div>
+                </article>
+            {% endfor %}
+        </div>
+    </div>    
+
+    {% endif %}
+
 
 {% endblock content %}

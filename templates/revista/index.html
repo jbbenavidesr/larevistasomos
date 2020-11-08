@@ -1,7 +1,6 @@
 {% extends '_base.html' %}
 
-{% load static %}
-{% load markdown_extras %}
+{% load static markdown_extras %}
 
 {% block before %}
 {% if gallery %}
@@ -66,7 +65,23 @@
                                 </a>
                             </div>
                         </li>
-                    {% for post in object_list|slice:"8:" %}
+                    {% for post in object_list|slice:"8:12" %}
+                        <li>
+                            {% include 'partials/post-card.html' %}
+                        </li>
+                    {% endfor %}
+                    <li>
+                            <div class="[ pauta ] [ flow card ] [ radius ]">
+                                <div></div>
+                                <h2 class="align-center">
+                                    Publicidad
+                                </h2>
+                                <a href="https://www.instagram.com/trendy.paws/" target="_blank" rel="noopener noreferrer" class="card__link card__link--main">
+                                    <img src="{% static 'images/pautas/2.jpg' %}" alt="Publicidad - Trendy Paws" class="pauta__image">
+                                </a>
+                            </div>
+                        </li>
+                    {% for post in object_list|slice:"12:" %}
                         <li>
                             {% include 'partials/post-card.html' %}
                         </li>
@@ -106,6 +121,16 @@
                     </ul>
                 </div>
                 {% endif %}
+
+                <div class="[ pauta ] [ flow card ] [ radius ]">
+                    <div></div>
+                    <h2 class="align-center">
+                        Publicidad
+                    </h2>
+                    <a href="https://instagram.com/proyectoprea/" target="_blank" rel="noopener noreferrer" class="card__link card__link--main">
+                        <img src="{% static 'images/pautas/4.png' %}" alt="Publicidad - PREA" class="pauta__image">
+                    </a>
+                </div>
 
                 {% if poemas %}
                 <div class="[ flow ] [ border-dashed ]">
@@ -189,18 +214,6 @@
         </div>
     </div>
 
-    <div class="[ pauta ] [ flow card ] [ radius gap-bottom-300 ]">
-        <div></div>
-        <h2 class="align-center">
-            Publicidad
-        </h2>
-        <div class="card__image">
-            <a href="https://www.iventoscolombia.com" target="_blank" rel="noopener noreferrer" class="card__link card__link--main">
-                <img src="{% static 'images/pautas/big.jpg' %}" alt="Publicidad - iVentos" class="pauta__image desktop">
-                <img src="{% static 'images/pautas/big_mobile.jpg' %}" alt="Publicidad - iVentos" class="pauta__image mobile">
-            </a>
-        </div>
-    </div>
 {% endblock content %}
     
 
