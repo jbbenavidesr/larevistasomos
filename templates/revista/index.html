@@ -1,6 +1,6 @@
 {% extends '_base.html' %}
 
-{% load static markdown_extras %}
+{% load static markdown_extras index %}
 
 {% block before %}
 {% if gallery %}
@@ -38,49 +38,63 @@
                             {% include 'partials/post-card.html' %}
                         </li>
                     {% endfor %}
-                        <li>
-                            <div class="[ pauta ] [ flow card ] [ radius ]">
-                                <div></div>
-                                <h2 class="align-center">
-                                    Publicidad
-                                </h2>
-                                <a href="https://www.instagram.com/cataniacookies/" target="_blank" rel="noopener noreferrer" class="card__link card__link--main">
-                                    <img src="{% static 'images/pautas/1.png' %}" alt="Publicidad - Catania Cookies" class="pauta__image">
-                                </a>
-                            </div>
-                        </li>
+
+                    
+                    {% with ad_num=0 %}
+                        {% if ads|index:ad_num %}
+                            <li>
+                                {% with ad=ads|index:ad_num  %}
+                                    {% include 'advertisement/advert.html' %}
+                                {% endwith %}
+                            </li>
+                        {% elif draft %}
+                            <li>
+                                {% include 'advertisement/placeholder.html' %}
+                            </li>
+                        {% endif %}
+                    {% endwith %}
+                    
+           
                     {% for post in object_list|slice:"6:8" %}
                         <li>
                             {% include 'partials/post-card.html' %}
                         </li>
                     {% endfor %}
-                        <li>
-                            <div class="[ pauta ] [ flow card ] [ radius ]">
-                                <div></div>
-                                <h2 class="align-center">
-                                    Publicidad
-                                </h2>
-                                <a href="https://www.instagram.com/trendy.paws/" target="_blank" rel="noopener noreferrer" class="card__link card__link--main">
-                                    <img src="{% static 'images/pautas/2.jpg' %}" alt="Publicidad - Trendy Paws" class="pauta__image">
-                                </a>
-                            </div>
-                        </li>
+
+                    {% with ad_num=2 %}
+                        {% if ads|index:ad_num %}
+                            <li>
+                                {% with ad=ads|index:ad_num  %}
+                                    {% include 'advertisement/advert.html' %}
+                                {% endwith %}
+                            </li>
+                        {% elif draft %}
+                            <li>
+                                {% include 'advertisement/placeholder.html' %}
+                            </li>
+                        {% endif %}
+                    {% endwith %}
+ 
                     {% for post in object_list|slice:"8:12" %}
                         <li>
                             {% include 'partials/post-card.html' %}
                         </li>
                     {% endfor %}
-                    <li>
-                            <div class="[ pauta ] [ flow card ] [ radius ]">
-                                <div></div>
-                                <h2 class="align-center">
-                                    Publicidad
-                                </h2>
-                                <a href="https://www.instagram.com/trendy.paws/" target="_blank" rel="noopener noreferrer" class="card__link card__link--main">
-                                    <img src="{% static 'images/pautas/2.jpg' %}" alt="Publicidad - Trendy Paws" class="pauta__image">
-                                </a>
-                            </div>
-                        </li>
+
+                    {% with ad_num=4 %}
+                        {% if ads|index:ad_num %}
+                            <li>
+                                {% with ad=ads|index:ad_num  %}
+                                    {% include 'advertisement/advert.html' %}
+                                {% endwith %}
+                            </li>
+                        {% elif draft %}
+                            <li>
+                                {% include 'advertisement/placeholder.html' %}
+                            </li>
+                        {% endif %}
+                    {% endwith %}
+                    
                     {% for post in object_list|slice:"12:" %}
                         <li>
                             {% include 'partials/post-card.html' %}
@@ -122,15 +136,15 @@
                 </div>
                 {% endif %}
 
-                <div class="[ pauta ] [ flow card ] [ radius ]">
-                    <div></div>
-                    <h2 class="align-center">
-                        Publicidad
-                    </h2>
-                    <a href="https://instagram.com/proyectoprea/" target="_blank" rel="noopener noreferrer" class="card__link card__link--main">
-                        <img src="{% static 'images/pautas/4.png' %}" alt="Publicidad - PREA" class="pauta__image">
-                    </a>
-                </div>
+                {% with ad_num=1 %}
+                    {% if ads|index:ad_num %}
+                        {% with ad=ads|index:ad_num  %}
+                            {% include 'advertisement/advert.html' %}
+                        {% endwith %}
+                    {% elif draft %}
+                        {% include 'advertisement/placeholder.html' %}
+                    {% endif %}
+                {% endwith %}
 
                 {% if poemas %}
                 <div class="[ flow ] [ border-dashed ]">
@@ -152,15 +166,15 @@
                 </div>
                 {% endif %}
 
-                <div class="[ pauta ] [ flow card ] [ radius ]">
-                    <div></div>
-                    <h2 class="align-center">
-                        Publicidad
-                    </h2>
-                    <a href="https://instagram.com/proyectoprea/" target="_blank" rel="noopener noreferrer" class="card__link card__link--main">
-                        <img src="{% static 'images/pautas/4.png' %}" alt="Publicidad - PREA" class="pauta__image">
-                    </a>
-                </div>
+                {% with ad_num=3 %}
+                    {% if ads|index:ad_num %}
+                        {% with ad=ads|index:ad_num  %}
+                            {% include 'advertisement/advert.html' %}
+                        {% endwith %}
+                    {% elif draft %}
+                        {% include 'advertisement/placeholder.html' %}
+                    {% endif %}
+                {% endwith %}
 
                 {% if cine %}
                 <div class="[ flow ] [ border-dashed ]">
@@ -201,19 +215,19 @@
                     </ul>
                 </div>
 
-                <div class="[ pauta ] [ flow card ] [ radius ]">
-                    <div></div>
-                    <h2 class="align-center">
-                        Publicidad
-                    </h2>
-                    <a href="https://instagram.com/smores_bogota/" target="_blank" rel="noopener noreferrer" class="card__link card__link--main">
-                        <img src="{% static 'images/pautas/5.jpg' %}" alt="Publicidad - smores bogotá" class="pauta__image">
-                    </a>
-                </div>
+                {% with ad_num=5 %}
+                    {% if ads|index:ad_num %}
+                        {% with ad=ads|index:ad_num  %}
+                            {% include 'advertisement/advert.html' %}
+                        {% endwith %}
+                    {% elif draft %}
+                        {% include 'advertisement/placeholder.html' %}
+                    {% endif %}
+                {% endwith %}
             </aside>
         </div>
     </div>
-
+    
 {% endblock content %}
     
 

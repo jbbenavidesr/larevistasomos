@@ -1,0 +1,16 @@
+<div class="[ pauta ] [ flow card ] [ radius ]">
+    <div></div>
+    <h2 class="align-center">
+        Publicidad
+    </h2>
+    <div class="card__image">
+        <a href="{{ ad.url }}" target="_blank" rel="noopener noreferrer" class="card__link card__link--main">
+            {% if ad.image_mobile %}
+                <img src="{{ ad.image.url }}" alt="Publicidad - {{ ad.name }}" class="pauta__image desktop">
+                <img src="{{ ad.image_mobile.url }}" alt="Publicidad - {{ ad.name }}" class="pauta__image mobile">
+            {% else %}
+                <img src="{{ ad.image.url }}" alt="Publicidad - {{ ad.name }}" class="pauta__image">
+            {% endif %}
+        </a>
+    </div>
+</div>

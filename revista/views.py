@@ -9,6 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Article, Comment, Category, Author, Issue
 from .forms import CommentForm
 from gallery.models import Gallery
+from advertisement.models import Advertisement
 
 
 class Index(generic.ListView):
@@ -57,6 +58,9 @@ class Index(generic.ListView):
         )
 
         context['gallery'] = Gallery.objects.order_by('?')[:10]
+
+        context['ads'] = Advertisement.objects.filter(
+            status=1).order_by('position')
 
         return context
 
@@ -127,6 +131,8 @@ class DraftIndex(LoginRequiredMixin, generic.ListView):
             issue__number=self.kwargs['pk']
         )
 
+        context['ads'] = Advertisement.objects.filter(
+            status=0).order_by('position')
         context['draft'] = True
 
         return context
