@@ -35,6 +35,10 @@
             }
         }
 
+        video {
+            width: 100%;
+        }
+
         blockquote {
             border-inline-start: 1rem solid get-color('pink');
             padding-inline-start: get-size('600');
