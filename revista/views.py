@@ -127,6 +127,8 @@ class DraftIndex(LoginRequiredMixin, generic.ListView):
             issue__number=self.kwargs['pk']
         )
 
+        context['draft'] = True
+
         return context
 
 
