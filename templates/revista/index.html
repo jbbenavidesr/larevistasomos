@@ -95,7 +95,7 @@
                         {% endif %}
                     {% endwith %}
                     
-                    {% for post in object_list|slice:"12:15" %}
+                    {% for post in object_list|slice:"12:16" %}
                         <li>
                             {% include 'partials/post-card.html' %}
                         </li>
@@ -115,7 +115,7 @@
                         {% endif %}
                     {% endwith %}
 
-                    {% for post in object_list|slice:"15:" %}
+                    {% for post in object_list|slice:"16:" %}
                         <li>
                             {% include 'partials/post-card.html' %}
                         </li>
