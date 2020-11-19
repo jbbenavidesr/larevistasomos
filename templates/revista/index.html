@@ -61,7 +61,7 @@
                         </li>
                     {% endfor %}
 
-                    {% with ad_num=2 %}
+                    {% with ad_num=1 %}
                         {% if ads|index:ad_num %}
                             <li>
                                 {% with ad=ads|index:ad_num  %}
@@ -81,7 +81,7 @@
                         </li>
                     {% endfor %}
 
-                    {% with ad_num=4 %}
+                    {% with ad_num=2 %}
                         {% if ads|index:ad_num %}
                             <li>
                                 {% with ad=ads|index:ad_num  %}
@@ -95,7 +95,27 @@
                         {% endif %}
                     {% endwith %}
                     
-                    {% for post in object_list|slice:"12:" %}
+                    {% for post in object_list|slice:"12:15" %}
+                        <li>
+                            {% include 'partials/post-card.html' %}
+                        </li>
+                    {% endfor %}
+
+                    {% with ad_num=3 %}
+                        {% if ads|index:ad_num %}
+                            <li>
+                                {% with ad=ads|index:ad_num  %}
+                                    {% include 'advertisement/advert.html' %}
+                                {% endwith %}
+                            </li>
+                        {% elif draft %}
+                            <li>
+                                {% include 'advertisement/placeholder.html' %}
+                            </li>
+                        {% endif %}
+                    {% endwith %}
+
+                    {% for post in object_list|slice:"15:" %}
                         <li>
                             {% include 'partials/post-card.html' %}
                         </li>
@@ -136,7 +156,7 @@
                 </div>
                 {% endif %}
 
-                {% with ad_num=1 %}
+                {% with ad_num=4 %}
                     {% if ads|index:ad_num %}
                         {% with ad=ads|index:ad_num  %}
                             {% include 'advertisement/advert.html' %}
@@ -166,7 +186,7 @@
                 </div>
                 {% endif %}
 
-                {% with ad_num=3 %}
+                {% with ad_num=5 %}
                     {% if ads|index:ad_num %}
                         {% with ad=ads|index:ad_num  %}
                             {% include 'advertisement/advert.html' %}
@@ -215,7 +235,7 @@
                     </ul>
                 </div>
 
-                {% with ad_num=5 %}
+                {% with ad_num=6 %}
                     {% if ads|index:ad_num %}
                         {% with ad=ads|index:ad_num  %}
                             {% include 'advertisement/advert.html' %}
