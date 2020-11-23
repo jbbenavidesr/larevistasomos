@@ -33,7 +33,7 @@
                 </div>
                 
                 <ul class="auto-grid">
-                    {% for post in object_list|slice:"1:5" %}
+                    {% for post in object_list|slice:"1:6" %}
                         <li>
                             {% include 'partials/post-card.html' %}
                         </li>
@@ -55,7 +55,7 @@
                     {% endwith %}
                     
            
-                    {% for post in object_list|slice:"5:7" %}
+                    {% for post in object_list|slice:"6:8" %}
                         <li>
                             {% include 'partials/post-card.html' %}
                         </li>
@@ -95,7 +95,7 @@
                         {% endif %}
                     {% endwith %}
                     
-                    {% for post in object_list|slice:"11:15" %}
+                    {% for post in object_list|slice:"11:13" %}
                         <li>
                             {% include 'partials/post-card.html' %}
                         </li>
@@ -115,7 +115,7 @@
                         {% endif %}
                     {% endwith %}
 
-                    {% for post in object_list|slice:"15:" %}
+                    {% for post in object_list|slice:"13:" %}
                         <li>
                             {% include 'partials/post-card.html' %}
                         </li>
