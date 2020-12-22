@@ -26,8 +26,6 @@
                                     </h2>
                                     {% if post.images.all %}
                                     <img src="{{ post.get_first_image.image.url }}" alt="" class="author-image">
-                                    {% elif post.author.photo %}
-                                    <img src="{{ post.author.photo.url }}" alt="" class="author-image">
                                     {% endif %}                      
                             </article>
                         </li>
