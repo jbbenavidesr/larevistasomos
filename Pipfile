@@ -10,7 +10,7 @@ django = "~=3.1.0"
 psycopg2-binary = "==2.8.5"
 environs = {extras = ["django"], version = "==8.0.0"}
 markdown = "==3.2.2"
-pillow = "==7.2.0"
+pillow = "==9.3.0"
 django-storages = "==1.10"
 boto3 = "==1.14"
 whitenoise = "==5.2"
